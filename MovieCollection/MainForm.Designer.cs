@@ -51,6 +51,7 @@
             this.locationDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.locationUrlDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.movieResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.resultsLabel = new System.Windows.Forms.Label();
             this.filterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.directorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).BeginInit();
@@ -61,6 +62,7 @@
             // 
             // filterPanel
             // 
+            this.filterPanel.Controls.Add(this.resultsLabel);
             this.filterPanel.Controls.Add(this.directorFilterLabel);
             this.filterPanel.Controls.Add(this.directorFilterSelect);
             this.filterPanel.Controls.Add(this.LocationFilterSelect);
@@ -74,7 +76,7 @@
             this.filterPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.filterPanel.Location = new System.Drawing.Point(0, 0);
             this.filterPanel.Name = "filterPanel";
-            this.filterPanel.Size = new System.Drawing.Size(454, 100);
+            this.filterPanel.Size = new System.Drawing.Size(454, 116);
             this.filterPanel.TabIndex = 0;
             // 
             // directorFilterLabel
@@ -200,13 +202,13 @@
             this.locationUrlDataGridViewTextBoxColumn});
             this.movieResultsGrid.DataSource = this.movieResultBindingSource;
             this.movieResultsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.movieResultsGrid.Location = new System.Drawing.Point(0, 100);
+            this.movieResultsGrid.Location = new System.Drawing.Point(0, 116);
             this.movieResultsGrid.MultiSelect = false;
             this.movieResultsGrid.Name = "movieResultsGrid";
             this.movieResultsGrid.ReadOnly = true;
             this.movieResultsGrid.RowHeadersVisible = false;
             this.movieResultsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.movieResultsGrid.Size = new System.Drawing.Size(454, 161);
+            this.movieResultsGrid.Size = new System.Drawing.Size(454, 145);
             this.movieResultsGrid.TabIndex = 1;
             // 
             // titleDataGridViewTextBoxColumn
@@ -261,6 +263,15 @@
             // 
             this.movieResultBindingSource.DataSource = typeof(MovieCollection.Models.MovieResult);
             // 
+            // resultsLabel
+            // 
+            this.resultsLabel.AutoSize = true;
+            this.resultsLabel.Location = new System.Drawing.Point(9, 91);
+            this.resultsLabel.Name = "resultsLabel";
+            this.resultsLabel.Size = new System.Drawing.Size(42, 13);
+            this.resultsLabel.TabIndex = 10;
+            this.resultsLabel.Text = "Results";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -306,6 +317,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn locationDescriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn locationUrlDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource movieResultBindingSource;
+        private System.Windows.Forms.Label resultsLabel;
     }
 }
 

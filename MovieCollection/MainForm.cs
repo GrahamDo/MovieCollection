@@ -9,6 +9,7 @@ namespace MovieCollection
     {
         private readonly ActorDirectorGetter _actorDirectorGetter;
         private readonly LocationGetter _locationGetter;
+        private readonly MovieResultGetter _movieResultGetter;
         private bool _isInitialising = true;
         private bool _formIsClosing = false;
 
@@ -19,12 +20,14 @@ namespace MovieCollection
             InitializeComponent();
             _actorDirectorGetter = new ActorDirectorGetter();
             _locationGetter = new LocationGetter();
+            _movieResultGetter = new MovieResultGetter();
 
             actorBindingSource.DataSource = _actorDirectorGetter.GetListForFilter();
             directorBindingSource.DataSource = _actorDirectorGetter.GetListForFilter(
                 isForDirectors: true);
             locationBindingSource.DataSource = _locationGetter.GetListForFilter();
             _isInitialising = false;
+            DoFilter();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -69,6 +72,7 @@ namespace MovieCollection
             if (_isInitialising || _formIsClosing)
                 return;
 
+            movieResultBindingSource.DataSource = null;
             var title = titleFilterText.Text.Trim();
             var year = yearFilterText.Text == string.Empty ? 0 : 
                 Convert.ToInt32(yearFilterText.Text);
@@ -76,9 +80,19 @@ namespace MovieCollection
             var directorId = ((ActorDirector)directorBindingSource.Current).Id;
             var locationId = ((Location)locationBindingSource.Current).Id;
 
-            var getter = new MovieResultGetter();
-            movieResultBindingSource.DataSource = getter.Search(title, year, actorId, 
-                directorId, locationId);
+            var data = _movieResultGetter.Search(title, year, actorId, directorId, 
+                locationId);
+            if (_movieResultGetter.IsMaxResultsCountExceeded(data,
+                Settings.Default.MaxResultsAllowed))
+            {
+                resultsLabel.Text = "Too many records returned. Please narrow your filter.";
+                return;
+            }
+
+            movieResultBindingSource.DataSource = data;
+            resultsLabel.Text = $"{data.Count} result{Pluralise(data.Count)} returned.";
         }
+
+        private object Pluralise(int count) => count == 1 ? "" : "s";
     }
 }

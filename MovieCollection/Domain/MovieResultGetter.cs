@@ -28,5 +28,8 @@ namespace MovieCollection.Domain
             }
             return results;
         }
+
+        public bool IsMaxResultsCountExceeded(List<MovieResult> list, uint maxResults)
+            => list.Count > maxResults;
     }
 }
