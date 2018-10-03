@@ -29,7 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.filterPanel = new System.Windows.Forms.Panel();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.addMovieButton = new System.Windows.Forms.ToolStripButton();
+            this.resultsLabel = new System.Windows.Forms.Label();
             this.directorFilterLabel = new System.Windows.Forms.Label();
             this.directorFilterSelect = new System.Windows.Forms.ComboBox();
             this.directorBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -51,13 +55,16 @@
             this.locationDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.locationUrlDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.movieResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.resultsLabel = new System.Windows.Forms.Label();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addMovieMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.filterPanel.SuspendLayout();
+            this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.directorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieResultsGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieResultBindingSource)).BeginInit();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // filterPanel
@@ -73,16 +80,46 @@
             this.filterPanel.Controls.Add(this.yearFilterLabel);
             this.filterPanel.Controls.Add(this.titleFilterText);
             this.filterPanel.Controls.Add(this.titleFilterLabel);
+            this.filterPanel.Controls.Add(this.toolStrip);
             this.filterPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.filterPanel.Location = new System.Drawing.Point(0, 0);
             this.filterPanel.Name = "filterPanel";
-            this.filterPanel.Size = new System.Drawing.Size(454, 116);
+            this.filterPanel.Size = new System.Drawing.Size(454, 148);
             this.filterPanel.TabIndex = 0;
+            // 
+            // toolStrip
+            // 
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addMovieButton});
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(454, 25);
+            this.toolStrip.TabIndex = 11;
+            this.toolStrip.Text = "toolStrip1";
+            // 
+            // addMovieButton
+            // 
+            this.addMovieButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.addMovieButton.Image = ((System.Drawing.Image)(resources.GetObject("addMovieButton.Image")));
+            this.addMovieButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.addMovieButton.Name = "addMovieButton";
+            this.addMovieButton.Size = new System.Drawing.Size(69, 22);
+            this.addMovieButton.Text = "Add Movie";
+            this.addMovieButton.Click += new System.EventHandler(this.addMovieButton_Click);
+            // 
+            // resultsLabel
+            // 
+            this.resultsLabel.AutoSize = true;
+            this.resultsLabel.Location = new System.Drawing.Point(9, 116);
+            this.resultsLabel.Name = "resultsLabel";
+            this.resultsLabel.Size = new System.Drawing.Size(42, 13);
+            this.resultsLabel.TabIndex = 10;
+            this.resultsLabel.Text = "Results";
             // 
             // directorFilterLabel
             // 
             this.directorFilterLabel.AutoSize = true;
-            this.directorFilterLabel.Location = new System.Drawing.Point(175, 38);
+            this.directorFilterLabel.Location = new System.Drawing.Point(175, 63);
             this.directorFilterLabel.Name = "directorFilterLabel";
             this.directorFilterLabel.Size = new System.Drawing.Size(47, 13);
             this.directorFilterLabel.TabIndex = 9;
@@ -92,7 +129,7 @@
             // 
             this.directorFilterSelect.DataSource = this.directorBindingSource;
             this.directorFilterSelect.FormattingEnabled = true;
-            this.directorFilterSelect.Location = new System.Drawing.Point(228, 30);
+            this.directorFilterSelect.Location = new System.Drawing.Point(228, 55);
             this.directorFilterSelect.Name = "directorFilterSelect";
             this.directorFilterSelect.Size = new System.Drawing.Size(121, 21);
             this.directorFilterSelect.TabIndex = 8;
@@ -106,7 +143,7 @@
             // 
             this.LocationFilterSelect.DataSource = this.locationBindingSource;
             this.LocationFilterSelect.FormattingEnabled = true;
-            this.LocationFilterSelect.Location = new System.Drawing.Point(65, 57);
+            this.LocationFilterSelect.Location = new System.Drawing.Point(65, 82);
             this.LocationFilterSelect.Name = "LocationFilterSelect";
             this.LocationFilterSelect.Size = new System.Drawing.Size(117, 21);
             this.LocationFilterSelect.TabIndex = 7;
@@ -119,7 +156,7 @@
             // locationFilterLabel
             // 
             this.locationFilterLabel.AutoSize = true;
-            this.locationFilterLabel.Location = new System.Drawing.Point(8, 65);
+            this.locationFilterLabel.Location = new System.Drawing.Point(8, 90);
             this.locationFilterLabel.Name = "locationFilterLabel";
             this.locationFilterLabel.Size = new System.Drawing.Size(51, 13);
             this.locationFilterLabel.TabIndex = 6;
@@ -128,7 +165,7 @@
             // actorFilterLabel
             // 
             this.actorFilterLabel.AutoSize = true;
-            this.actorFilterLabel.Location = new System.Drawing.Point(6, 38);
+            this.actorFilterLabel.Location = new System.Drawing.Point(6, 63);
             this.actorFilterLabel.Name = "actorFilterLabel";
             this.actorFilterLabel.Size = new System.Drawing.Size(35, 13);
             this.actorFilterLabel.TabIndex = 5;
@@ -138,7 +175,7 @@
             // 
             this.actorFilterSelect.DataSource = this.actorBindingSource;
             this.actorFilterSelect.FormattingEnabled = true;
-            this.actorFilterSelect.Location = new System.Drawing.Point(47, 30);
+            this.actorFilterSelect.Location = new System.Drawing.Point(47, 55);
             this.actorFilterSelect.Name = "actorFilterSelect";
             this.actorFilterSelect.Size = new System.Drawing.Size(121, 21);
             this.actorFilterSelect.TabIndex = 4;
@@ -150,7 +187,8 @@
             // 
             // yearFilterText
             // 
-            this.yearFilterText.Location = new System.Drawing.Point(334, 5);
+            this.yearFilterText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.yearFilterText.Location = new System.Drawing.Point(334, 30);
             this.yearFilterText.Name = "yearFilterText";
             this.yearFilterText.Size = new System.Drawing.Size(54, 20);
             this.yearFilterText.TabIndex = 3;
@@ -159,8 +197,9 @@
             // 
             // yearFilterLabel
             // 
+            this.yearFilterLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.yearFilterLabel.AutoSize = true;
-            this.yearFilterLabel.Location = new System.Drawing.Point(296, 12);
+            this.yearFilterLabel.Location = new System.Drawing.Point(296, 34);
             this.yearFilterLabel.Name = "yearFilterLabel";
             this.yearFilterLabel.Size = new System.Drawing.Size(32, 13);
             this.yearFilterLabel.TabIndex = 2;
@@ -170,7 +209,7 @@
             // 
             this.titleFilterText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.titleFilterText.Location = new System.Drawing.Point(40, 5);
+            this.titleFilterText.Location = new System.Drawing.Point(40, 30);
             this.titleFilterText.Name = "titleFilterText";
             this.titleFilterText.Size = new System.Drawing.Size(247, 20);
             this.titleFilterText.TabIndex = 1;
@@ -179,7 +218,7 @@
             // titleFilterLabel
             // 
             this.titleFilterLabel.AutoSize = true;
-            this.titleFilterLabel.Location = new System.Drawing.Point(3, 9);
+            this.titleFilterLabel.Location = new System.Drawing.Point(3, 34);
             this.titleFilterLabel.Name = "titleFilterLabel";
             this.titleFilterLabel.Size = new System.Drawing.Size(30, 13);
             this.titleFilterLabel.TabIndex = 0;
@@ -202,13 +241,13 @@
             this.locationUrlDataGridViewTextBoxColumn});
             this.movieResultsGrid.DataSource = this.movieResultBindingSource;
             this.movieResultsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.movieResultsGrid.Location = new System.Drawing.Point(0, 116);
+            this.movieResultsGrid.Location = new System.Drawing.Point(0, 148);
             this.movieResultsGrid.MultiSelect = false;
             this.movieResultsGrid.Name = "movieResultsGrid";
             this.movieResultsGrid.ReadOnly = true;
             this.movieResultsGrid.RowHeadersVisible = false;
             this.movieResultsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.movieResultsGrid.Size = new System.Drawing.Size(454, 145);
+            this.movieResultsGrid.Size = new System.Drawing.Size(454, 237);
             this.movieResultsGrid.TabIndex = 1;
             // 
             // titleDataGridViewTextBoxColumn
@@ -263,20 +302,25 @@
             // 
             this.movieResultBindingSource.DataSource = typeof(MovieCollection.Models.MovieResult);
             // 
-            // resultsLabel
+            // contextMenuStrip
             // 
-            this.resultsLabel.AutoSize = true;
-            this.resultsLabel.Location = new System.Drawing.Point(9, 91);
-            this.resultsLabel.Name = "resultsLabel";
-            this.resultsLabel.Size = new System.Drawing.Size(42, 13);
-            this.resultsLabel.TabIndex = 10;
-            this.resultsLabel.Text = "Results";
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addMovieMenu});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(97, 26);
+            // 
+            // addMovieMenu
+            // 
+            this.addMovieMenu.Name = "addMovieMenu";
+            this.addMovieMenu.Size = new System.Drawing.Size(96, 22);
+            this.addMovieMenu.Text = "Add";
+            this.addMovieMenu.Click += new System.EventHandler(this.addMovieMenu_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 261);
+            this.ClientSize = new System.Drawing.Size(454, 385);
             this.Controls.Add(this.movieResultsGrid);
             this.Controls.Add(this.filterPanel);
             this.Name = "MainForm";
@@ -284,11 +328,14 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.filterPanel.ResumeLayout(false);
             this.filterPanel.PerformLayout();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.directorBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.actorBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieResultsGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieResultBindingSource)).EndInit();
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -318,6 +365,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn locationUrlDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource movieResultBindingSource;
         private System.Windows.Forms.Label resultsLabel;
+        private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.ToolStripButton addMovieButton;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem addMovieMenu;
     }
 }
 

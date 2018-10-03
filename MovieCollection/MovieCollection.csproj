@@ -54,8 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddUpdateMovieForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddUpdateMovieForm.Designer.cs">
+      <DependentUpon>AddUpdateMovieForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Domain\LocationGetter.cs" />
     <Compile Include="Domain\ActorDirectorGetter.cs" />
+    <Compile Include="Domain\MovieAdder.cs" />
     <Compile Include="Domain\MovieResultGetter.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -89,6 +96,7 @@
     <Compile Include="Models\Movie.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Movie.partial.cs" />
     <Compile Include="Models\MovieResult.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -99,6 +107,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddUpdateMovieForm.resx">
+      <DependentUpon>AddUpdateMovieForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,6 +133,7 @@
     <None Include="Properties\DataSources\MovieCollection.Models.Actor.datasource" />
     <None Include="Properties\DataSources\MovieCollection.Models.ActorDirector.datasource" />
     <None Include="Properties\DataSources\MovieCollection.Models.Location.datasource" />
+    <None Include="Properties\DataSources\MovieCollection.Models.Movie.datasource" />
     <None Include="Properties\DataSources\MovieCollection.Models.MovieResult.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

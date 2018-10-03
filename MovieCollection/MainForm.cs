@@ -10,6 +10,7 @@ namespace MovieCollection
         private readonly ActorDirectorGetter _actorDirectorGetter;
         private readonly LocationGetter _locationGetter;
         private readonly MovieResultGetter _movieResultGetter;
+        private readonly MovieAdder _movieAdder;
         private bool _isInitialising = true;
         private bool _formIsClosing = false;
 
@@ -22,6 +23,7 @@ namespace MovieCollection
             _actorDirectorGetter = new ActorDirectorGetter();
             _locationGetter = new LocationGetter();
             _movieResultGetter = new MovieResultGetter();
+            _movieAdder = new MovieAdder();
 
             actorBindingSource.DataSource = _actorDirectorGetter.GetListForFilter();
             directorBindingSource.DataSource = _actorDirectorGetter.GetListForFilter(
@@ -68,6 +70,16 @@ namespace MovieCollection
             DoFilter();
         }
 
+        private void addMovieMenu_Click(object sender, EventArgs e)
+        {
+            AddMovie();
+        }
+
+        private void addMovieButton_Click(object sender, EventArgs e)
+        {
+            AddMovie();
+        }
+
         private void DoFilter()
         {
             if (_isInitialising || _formIsClosing)
@@ -103,5 +115,15 @@ namespace MovieCollection
         }
 
         private object Pluralise(int count) => count == 1 ? "" : "s";
+
+        private void AddMovie()
+        {
+            var newMovie = _movieAdder.CreateMovieObjectForAdd();
+            using (var frm = new AddUpdateMovieForm(newMovie, _actorDirectorGetter, 
+                _locationGetter))
+            {
+                frm.ShowDialog();
+            };
+        }
     }
 }
