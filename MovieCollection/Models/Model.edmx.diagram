@@ -5,12 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="c927957ae7274961a70e108ab5197196" Name="Diagram1">
-        <EntityTypeShape EntityType="MovieCollectionModel.Actor" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MovieCollectionModel.Location" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MovieCollectionModel.Movie" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="MovieCollectionModel.MovieResult" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="MovieCollectionModel.FK_Movie_Actor" ManuallyRouted="false" />
         <AssociationConnector Association="MovieCollectionModel.FK_Movie_Location" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MovieCollectionModel.ActorDirector" Width="1.5" PointX="6.25" PointY="3.625" />
+        <AssociationConnector Association="MovieCollectionModel.FK_Movie_Actor1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

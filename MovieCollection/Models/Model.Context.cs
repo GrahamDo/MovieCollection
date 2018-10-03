@@ -25,9 +25,9 @@ namespace MovieCollection.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Actor> Actors { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Movie> Movies { get; set; }
         public virtual DbSet<MovieResult> MovieResults { get; set; }
+        public virtual DbSet<ActorDirector> ActorDirectors { get; set; }
     }
 }

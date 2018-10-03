@@ -1,6 +1,6 @@
 ﻿namespace MovieCollection.Models
 {
-    public partial class Actor
+    public partial class ActorDirector
     {
         public override string ToString()
         {

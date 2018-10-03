@@ -20,8 +20,9 @@ namespace MovieCollection.Models
         public Nullable<System.Guid> ActorId { get; set; }
         public System.Guid LocationId { get; set; }
         public string LocationUrl { get; set; }
+        public Nullable<System.Guid> DirectorId { get; set; }
     
-        public virtual Actor Actor { get; set; }
         public virtual Location Location { get; set; }
+        public virtual ActorDirector ActorDirector { get; set; }
     }
 }

@@ -107,7 +107,7 @@
             // 
             // actorBindingSource
             // 
-            this.actorBindingSource.DataSource = typeof(MovieCollection.Models.Actor);
+            this.actorBindingSource.DataSource = typeof(MovieCollection.Models.ActorDirector);
             // 
             // actorFilterLabel
             // 
