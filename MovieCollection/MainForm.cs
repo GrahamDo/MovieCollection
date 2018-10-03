@@ -5,16 +5,16 @@ namespace MovieCollection
 {
     public partial class MainForm : Form
     {
-        private readonly ActorDirectorGetter _actorGetter;
+        private readonly ActorDirectorGetter _actorDirectorGetter;
         private readonly LocationGetter _locationGetter;
 
         public MainForm()
         {
             InitializeComponent();
-            _actorGetter = new ActorDirectorGetter();
+            _actorDirectorGetter = new ActorDirectorGetter();
             _locationGetter = new LocationGetter();
 
-            actorBindingSource.DataSource = _actorGetter.GetActorListForFilter();
+            actorBindingSource.DataSource = _actorDirectorGetter.GetActorListForFilter();
             locationBindingSource.DataSource = _locationGetter.GetListForFilter();
         }
 
