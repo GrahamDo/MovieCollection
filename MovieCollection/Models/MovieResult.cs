@@ -20,5 +20,6 @@ namespace MovieCollection.Models
         public string ActorName { get; set; }
         public string LocationDescription { get; set; }
         public string LocationUrl { get; set; }
+        public string DirectorName { get; set; }
     }
 }
