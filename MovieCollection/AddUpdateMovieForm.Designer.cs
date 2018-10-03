@@ -69,6 +69,7 @@
             // 
             this.titleText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.movieBindingSource, "Title", true));
             this.titleText.Location = new System.Drawing.Point(61, 7);
+            this.titleText.MaxLength = 50;
             this.titleText.Name = "titleText";
             this.titleText.Size = new System.Drawing.Size(304, 20);
             this.titleText.TabIndex = 1;
@@ -81,6 +82,7 @@
             // 
             this.yearText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.movieBindingSource, "Year", true));
             this.yearText.Location = new System.Drawing.Point(61, 33);
+            this.yearText.MaxLength = 10;
             this.yearText.Name = "yearText";
             this.yearText.Size = new System.Drawing.Size(54, 20);
             this.yearText.TabIndex = 2;
@@ -177,6 +179,7 @@
             // 
             this.locationUrlText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.movieBindingSource, "LocationUrl", true));
             this.locationUrlText.Location = new System.Drawing.Point(96, 140);
+            this.locationUrlText.MaxLength = 2083;
             this.locationUrlText.Name = "locationUrlText";
             this.locationUrlText.Size = new System.Drawing.Size(235, 20);
             this.locationUrlText.TabIndex = 15;
