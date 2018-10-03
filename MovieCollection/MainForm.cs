@@ -119,10 +119,27 @@ namespace MovieCollection
             EditMovie();
         }
 
+        private void deleteMovieButton_Click(object sender, EventArgs e)
+        {
+            DeleteMovie();
+        }
+
+        private void deleteMovieMenu_Click(object sender, EventArgs e)
+        {
+            DeleteMovie();
+        }
+
         private void movieResultsGrid_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-                EditMovie();
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    EditMovie();
+                    break;
+                case Keys.Delete:
+                    DeleteMovie();
+                    break;
+            }
         }
 
         private void DoFilter()
@@ -183,6 +200,19 @@ namespace MovieCollection
             var currentMovieResult = (MovieResult)movieResultBindingSource.Current;
             var movieToEdit = _movieGetter.GetById(currentMovieResult.Id);
             AddOrEditMovie(movieToEdit);
+        }
+
+        private void DeleteMovie()
+        {
+            var currentMovieResult = (MovieResult)movieResultBindingSource.Current;
+            var confirm = MessageBox.Show($"Are you sure you want to delete {currentMovieResult.Title}?", 
+                Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                var deleter = new MovieDeleter();
+                deleter.DeleteById(currentMovieResult.Id);
+                DoFilter();
+            }
         }
 
         private void BrowseToUrl()
