@@ -109,6 +109,22 @@ namespace MovieCollection
             EditMovie();
         }
 
+        private void editMovieButton_Click(object sender, EventArgs e)
+        {
+            EditMovie();
+        }
+
+        private void editMovieMenu_Click(object sender, EventArgs e)
+        {
+            EditMovie();
+        }
+
+        private void movieResultsGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                EditMovie();
+        }
+
         private void DoFilter()
         {
             if (_isInitialising || _formIsClosing)

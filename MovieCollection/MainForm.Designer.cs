@@ -60,6 +60,8 @@
             this.contextMenuSeperator = new System.Windows.Forms.ToolStripSeparator();
             this.browseToUrlMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.movieResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.editMovieButton = new System.Windows.Forms.ToolStripButton();
+            this.editMovieMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.filterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.directorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).BeginInit();
@@ -211,6 +213,7 @@
             // 
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addMovieButton,
+            this.editMovieButton,
             this.browseToUrlButton});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
@@ -265,6 +268,7 @@
             this.movieResultsGrid.Size = new System.Drawing.Size(454, 237);
             this.movieResultsGrid.TabIndex = 1;
             this.movieResultsGrid.DoubleClick += new System.EventHandler(this.movieResultsGrid_DoubleClick);
+            this.movieResultsGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.movieResultsGrid_KeyDown);
             // 
             // titleDataGridViewTextBoxColumn
             // 
@@ -318,27 +322,28 @@
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addMovieMenu,
+            this.editMovieMenu,
             this.contextMenuSeperator,
             this.browseToUrlMenu});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(151, 54);
+            this.contextMenuStrip.Size = new System.Drawing.Size(151, 76);
             // 
             // addMovieMenu
             // 
             this.addMovieMenu.Name = "addMovieMenu";
-            this.addMovieMenu.Size = new System.Drawing.Size(150, 22);
+            this.addMovieMenu.Size = new System.Drawing.Size(152, 22);
             this.addMovieMenu.Text = "Add";
             this.addMovieMenu.Click += new System.EventHandler(this.addMovieMenu_Click);
             // 
             // contextMenuSeperator
             // 
             this.contextMenuSeperator.Name = "contextMenuSeperator";
-            this.contextMenuSeperator.Size = new System.Drawing.Size(147, 6);
+            this.contextMenuSeperator.Size = new System.Drawing.Size(149, 6);
             // 
             // browseToUrlMenu
             // 
             this.browseToUrlMenu.Name = "browseToUrlMenu";
-            this.browseToUrlMenu.Size = new System.Drawing.Size(150, 22);
+            this.browseToUrlMenu.Size = new System.Drawing.Size(152, 22);
             this.browseToUrlMenu.Text = "Browse to URL";
             this.browseToUrlMenu.Click += new System.EventHandler(this.browseToUrlMenu_Click);
             // 
@@ -346,6 +351,23 @@
             // 
             this.movieResultBindingSource.DataSource = typeof(MovieCollection.Models.MovieResult);
             this.movieResultBindingSource.CurrentChanged += new System.EventHandler(this.movieResultBindingSource_CurrentChanged);
+            // 
+            // editMovieButton
+            // 
+            this.editMovieButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.editMovieButton.Image = ((System.Drawing.Image)(resources.GetObject("editMovieButton.Image")));
+            this.editMovieButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.editMovieButton.Name = "editMovieButton";
+            this.editMovieButton.Size = new System.Drawing.Size(67, 22);
+            this.editMovieButton.Text = "Edit Movie";
+            this.editMovieButton.Click += new System.EventHandler(this.editMovieButton_Click);
+            // 
+            // editMovieMenu
+            // 
+            this.editMovieMenu.Name = "editMovieMenu";
+            this.editMovieMenu.Size = new System.Drawing.Size(152, 22);
+            this.editMovieMenu.Text = "Edit";
+            this.editMovieMenu.Click += new System.EventHandler(this.editMovieMenu_Click);
             // 
             // MainForm
             // 
@@ -403,6 +425,8 @@
         private System.Windows.Forms.ToolStripSeparator contextMenuSeperator;
         private System.Windows.Forms.ToolStripMenuItem browseToUrlMenu;
         private System.Windows.Forms.ToolStripButton browseToUrlButton;
+        private System.Windows.Forms.ToolStripButton editMovieButton;
+        private System.Windows.Forms.ToolStripMenuItem editMovieMenu;
     }
 }
 
