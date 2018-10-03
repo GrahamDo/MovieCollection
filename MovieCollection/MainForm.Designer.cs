@@ -47,6 +47,7 @@
             this.titleFilterLabel = new System.Windows.Forms.Label();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.addMovieButton = new System.Windows.Forms.ToolStripButton();
+            this.browseToUrlButton = new System.Windows.Forms.ToolStripButton();
             this.movieResultsGrid = new System.Windows.Forms.DataGridView();
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.yearDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,17 +55,19 @@
             this.directorNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.locationDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.locationUrlDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.movieResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addMovieMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuSeperator = new System.Windows.Forms.ToolStripSeparator();
+            this.browseToUrlMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.movieResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.filterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.directorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actorBindingSource)).BeginInit();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.movieResultsGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.movieResultBindingSource)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.movieResultBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // filterPanel
@@ -207,7 +210,8 @@
             // toolStrip
             // 
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addMovieButton});
+            this.addMovieButton,
+            this.browseToUrlButton});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(454, 25);
@@ -223,6 +227,16 @@
             this.addMovieButton.Size = new System.Drawing.Size(69, 22);
             this.addMovieButton.Text = "Add Movie";
             this.addMovieButton.Click += new System.EventHandler(this.addMovieButton_Click);
+            // 
+            // browseToUrlButton
+            // 
+            this.browseToUrlButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.browseToUrlButton.Image = ((System.Drawing.Image)(resources.GetObject("browseToUrlButton.Image")));
+            this.browseToUrlButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.browseToUrlButton.Name = "browseToUrlButton";
+            this.browseToUrlButton.Size = new System.Drawing.Size(87, 22);
+            this.browseToUrlButton.Text = "Browse to URL";
+            this.browseToUrlButton.Click += new System.EventHandler(this.browseToUrlButton_Click);
             // 
             // movieResultsGrid
             // 
@@ -299,23 +313,38 @@
             this.locationUrlDataGridViewTextBoxColumn.ReadOnly = true;
             this.locationUrlDataGridViewTextBoxColumn.Width = 98;
             // 
-            // movieResultBindingSource
-            // 
-            this.movieResultBindingSource.DataSource = typeof(MovieCollection.Models.MovieResult);
-            // 
             // contextMenuStrip
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addMovieMenu});
+            this.addMovieMenu,
+            this.contextMenuSeperator,
+            this.browseToUrlMenu});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(97, 26);
+            this.contextMenuStrip.Size = new System.Drawing.Size(151, 54);
             // 
             // addMovieMenu
             // 
             this.addMovieMenu.Name = "addMovieMenu";
-            this.addMovieMenu.Size = new System.Drawing.Size(96, 22);
+            this.addMovieMenu.Size = new System.Drawing.Size(150, 22);
             this.addMovieMenu.Text = "Add";
             this.addMovieMenu.Click += new System.EventHandler(this.addMovieMenu_Click);
+            // 
+            // contextMenuSeperator
+            // 
+            this.contextMenuSeperator.Name = "contextMenuSeperator";
+            this.contextMenuSeperator.Size = new System.Drawing.Size(147, 6);
+            // 
+            // browseToUrlMenu
+            // 
+            this.browseToUrlMenu.Name = "browseToUrlMenu";
+            this.browseToUrlMenu.Size = new System.Drawing.Size(150, 22);
+            this.browseToUrlMenu.Text = "Browse to URL";
+            this.browseToUrlMenu.Click += new System.EventHandler(this.browseToUrlMenu_Click);
+            // 
+            // movieResultBindingSource
+            // 
+            this.movieResultBindingSource.DataSource = typeof(MovieCollection.Models.MovieResult);
+            this.movieResultBindingSource.CurrentChanged += new System.EventHandler(this.movieResultBindingSource_CurrentChanged);
             // 
             // MainForm
             // 
@@ -335,8 +364,8 @@
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.movieResultsGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.movieResultBindingSource)).EndInit();
             this.contextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.movieResultBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -370,6 +399,9 @@
         private System.Windows.Forms.ToolStripButton addMovieButton;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem addMovieMenu;
+        private System.Windows.Forms.ToolStripSeparator contextMenuSeperator;
+        private System.Windows.Forms.ToolStripMenuItem browseToUrlMenu;
+        private System.Windows.Forms.ToolStripButton browseToUrlButton;
     }
 }
 

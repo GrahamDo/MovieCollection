@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System;
 using MovieCollection.Models;
+using System.Diagnostics;
 
 namespace MovieCollection
 {
@@ -81,6 +82,23 @@ namespace MovieCollection
             AddMovie();
         }
 
+        private void movieResultBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+            var selected = (MovieResult)movieResultBindingSource.Current;
+            browseToUrlMenu.Enabled = !string.IsNullOrWhiteSpace(selected.LocationUrl);
+            browseToUrlButton.Enabled = !string.IsNullOrWhiteSpace(selected.LocationUrl);
+        }
+
+        private void browseToUrlMenu_Click(object sender, EventArgs e)
+        {
+            BrowseToUrl();
+        }
+
+        private void browseToUrlButton_Click(object sender, EventArgs e)
+        {
+            BrowseToUrl();
+        }
+
         private void DoFilter()
         {
             if (_isInitialising || _formIsClosing)
@@ -127,6 +145,12 @@ namespace MovieCollection
                 if (frm.IsRefreshRequired)
                     DoFilter();
             };
+        }
+
+        private void BrowseToUrl()
+        {
+            var currentMovie = (MovieResult)movieResultBindingSource.Current;
+            Process.Start(currentMovie.LocationUrl);
         }
     }
 }
