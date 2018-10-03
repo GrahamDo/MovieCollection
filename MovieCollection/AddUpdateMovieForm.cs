@@ -105,6 +105,9 @@ namespace MovieCollection
                     return;
                 }
 
+                if (!_movie.LocationUrl.Contains("//"))
+                    _movie.LocationUrl = GetUriFromPath(_movie.LocationUrl);
+
                 if (_movie.IsNew)
                     _movieAdder.Add(_movie);
                 else
