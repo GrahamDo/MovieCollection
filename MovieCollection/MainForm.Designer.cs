@@ -30,23 +30,29 @@
         {
             this.components = new System.ComponentModel.Container();
             this.filterPanel = new System.Windows.Forms.Panel();
+            this.directorFilterLabel = new System.Windows.Forms.Label();
+            this.directorFilterSelect = new System.Windows.Forms.ComboBox();
+            this.LocationFilterSelect = new System.Windows.Forms.ComboBox();
+            this.locationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.locationFilterLabel = new System.Windows.Forms.Label();
+            this.actorFilterLabel = new System.Windows.Forms.Label();
+            this.actorFilterSelect = new System.Windows.Forms.ComboBox();
+            this.actorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.yearFilterText = new System.Windows.Forms.TextBox();
             this.yearFilterLabel = new System.Windows.Forms.Label();
             this.filterTitleText = new System.Windows.Forms.TextBox();
             this.titleFilterLabel = new System.Windows.Forms.Label();
-            this.actorFilterSelect = new System.Windows.Forms.ComboBox();
-            this.actorBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.actorFilterLabel = new System.Windows.Forms.Label();
-            this.locationFilterLabel = new System.Windows.Forms.Label();
-            this.LocationFilterSelect = new System.Windows.Forms.ComboBox();
-            this.locationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.directorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.filterPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.actorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.actorBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.directorBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // filterPanel
             // 
+            this.filterPanel.Controls.Add(this.directorFilterLabel);
+            this.filterPanel.Controls.Add(this.directorFilterSelect);
             this.filterPanel.Controls.Add(this.LocationFilterSelect);
             this.filterPanel.Controls.Add(this.locationFilterLabel);
             this.filterPanel.Controls.Add(this.actorFilterLabel);
@@ -60,6 +66,68 @@
             this.filterPanel.Name = "filterPanel";
             this.filterPanel.Size = new System.Drawing.Size(454, 100);
             this.filterPanel.TabIndex = 0;
+            // 
+            // directorFilterLabel
+            // 
+            this.directorFilterLabel.AutoSize = true;
+            this.directorFilterLabel.Location = new System.Drawing.Point(175, 38);
+            this.directorFilterLabel.Name = "directorFilterLabel";
+            this.directorFilterLabel.Size = new System.Drawing.Size(47, 13);
+            this.directorFilterLabel.TabIndex = 9;
+            this.directorFilterLabel.Text = "Director:";
+            // 
+            // directorFilterSelect
+            // 
+            this.directorFilterSelect.DataSource = this.directorBindingSource;
+            this.directorFilterSelect.FormattingEnabled = true;
+            this.directorFilterSelect.Location = new System.Drawing.Point(228, 30);
+            this.directorFilterSelect.Name = "directorFilterSelect";
+            this.directorFilterSelect.Size = new System.Drawing.Size(121, 21);
+            this.directorFilterSelect.TabIndex = 8;
+            // 
+            // LocationFilterSelect
+            // 
+            this.LocationFilterSelect.DataSource = this.locationBindingSource;
+            this.LocationFilterSelect.FormattingEnabled = true;
+            this.LocationFilterSelect.Location = new System.Drawing.Point(65, 57);
+            this.LocationFilterSelect.Name = "LocationFilterSelect";
+            this.LocationFilterSelect.Size = new System.Drawing.Size(117, 21);
+            this.LocationFilterSelect.TabIndex = 7;
+            // 
+            // locationBindingSource
+            // 
+            this.locationBindingSource.DataSource = typeof(MovieCollection.Models.Location);
+            // 
+            // locationFilterLabel
+            // 
+            this.locationFilterLabel.AutoSize = true;
+            this.locationFilterLabel.Location = new System.Drawing.Point(8, 65);
+            this.locationFilterLabel.Name = "locationFilterLabel";
+            this.locationFilterLabel.Size = new System.Drawing.Size(51, 13);
+            this.locationFilterLabel.TabIndex = 6;
+            this.locationFilterLabel.Text = "Location:";
+            // 
+            // actorFilterLabel
+            // 
+            this.actorFilterLabel.AutoSize = true;
+            this.actorFilterLabel.Location = new System.Drawing.Point(6, 38);
+            this.actorFilterLabel.Name = "actorFilterLabel";
+            this.actorFilterLabel.Size = new System.Drawing.Size(35, 13);
+            this.actorFilterLabel.TabIndex = 5;
+            this.actorFilterLabel.Text = "Actor:";
+            // 
+            // actorFilterSelect
+            // 
+            this.actorFilterSelect.DataSource = this.actorBindingSource;
+            this.actorFilterSelect.FormattingEnabled = true;
+            this.actorFilterSelect.Location = new System.Drawing.Point(47, 30);
+            this.actorFilterSelect.Name = "actorFilterSelect";
+            this.actorFilterSelect.Size = new System.Drawing.Size(121, 21);
+            this.actorFilterSelect.TabIndex = 4;
+            // 
+            // actorBindingSource
+            // 
+            this.actorBindingSource.DataSource = typeof(MovieCollection.Models.ActorDirector);
             // 
             // yearFilterText
             // 
@@ -96,49 +164,9 @@
             this.titleFilterLabel.TabIndex = 0;
             this.titleFilterLabel.Text = "Title:";
             // 
-            // actorFilterSelect
+            // directorBindingSource
             // 
-            this.actorFilterSelect.DataSource = this.actorBindingSource;
-            this.actorFilterSelect.FormattingEnabled = true;
-            this.actorFilterSelect.Location = new System.Drawing.Point(47, 30);
-            this.actorFilterSelect.Name = "actorFilterSelect";
-            this.actorFilterSelect.Size = new System.Drawing.Size(121, 21);
-            this.actorFilterSelect.TabIndex = 4;
-            // 
-            // actorBindingSource
-            // 
-            this.actorBindingSource.DataSource = typeof(MovieCollection.Models.ActorDirector);
-            // 
-            // actorFilterLabel
-            // 
-            this.actorFilterLabel.AutoSize = true;
-            this.actorFilterLabel.Location = new System.Drawing.Point(6, 38);
-            this.actorFilterLabel.Name = "actorFilterLabel";
-            this.actorFilterLabel.Size = new System.Drawing.Size(35, 13);
-            this.actorFilterLabel.TabIndex = 5;
-            this.actorFilterLabel.Text = "Actor:";
-            // 
-            // locationFilterLabel
-            // 
-            this.locationFilterLabel.AutoSize = true;
-            this.locationFilterLabel.Location = new System.Drawing.Point(174, 38);
-            this.locationFilterLabel.Name = "locationFilterLabel";
-            this.locationFilterLabel.Size = new System.Drawing.Size(51, 13);
-            this.locationFilterLabel.TabIndex = 6;
-            this.locationFilterLabel.Text = "Location:";
-            // 
-            // LocationFilterSelect
-            // 
-            this.LocationFilterSelect.DataSource = this.locationBindingSource;
-            this.LocationFilterSelect.FormattingEnabled = true;
-            this.LocationFilterSelect.Location = new System.Drawing.Point(231, 30);
-            this.LocationFilterSelect.Name = "LocationFilterSelect";
-            this.LocationFilterSelect.Size = new System.Drawing.Size(117, 21);
-            this.LocationFilterSelect.TabIndex = 7;
-            // 
-            // locationBindingSource
-            // 
-            this.locationBindingSource.DataSource = typeof(MovieCollection.Models.Location);
+            this.directorBindingSource.DataSource = typeof(MovieCollection.Models.ActorDirector);
             // 
             // MainForm
             // 
@@ -150,8 +178,9 @@
             this.Text = "Movie Collection";
             this.filterPanel.ResumeLayout(false);
             this.filterPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.actorBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.actorBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.directorBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -169,6 +198,9 @@
         private System.Windows.Forms.BindingSource locationBindingSource;
         private System.Windows.Forms.Label locationFilterLabel;
         private System.Windows.Forms.Label actorFilterLabel;
+        private System.Windows.Forms.Label directorFilterLabel;
+        private System.Windows.Forms.ComboBox directorFilterSelect;
+        private System.Windows.Forms.BindingSource directorBindingSource;
     }
 }
 

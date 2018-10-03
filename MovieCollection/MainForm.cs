@@ -14,7 +14,9 @@ namespace MovieCollection
             _actorDirectorGetter = new ActorDirectorGetter();
             _locationGetter = new LocationGetter();
 
-            actorBindingSource.DataSource = _actorDirectorGetter.GetActorListForFilter();
+            actorBindingSource.DataSource = _actorDirectorGetter.GetListForFilter();
+            directorBindingSource.DataSource = _actorDirectorGetter.GetListForFilter(
+                isForDirectors: true);
             locationBindingSource.DataSource = _locationGetter.GetListForFilter();
         }
 

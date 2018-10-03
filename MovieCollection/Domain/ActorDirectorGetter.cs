@@ -7,7 +7,7 @@ namespace MovieCollection.Domain
 {
     public class ActorDirectorGetter
     {
-        public IEnumerable<ActorDirector> GetActorListForFilter()
+        public IEnumerable<ActorDirector> GetListForFilter(bool isForDirectors = false)
         {
             var dummyActor = new ActorDirector { Id = Guid.Empty, Name = "<Please Select>" };
             var results = new List<ActorDirector>();
@@ -15,7 +15,8 @@ namespace MovieCollection.Domain
             using (MovieCollectionEntities context = new MovieCollectionEntities())
             {
                 results.AddRange(context.ActorDirectors
-                    .Where(a => a.IsActor).OrderBy(a => a.Name));
+                    .Where(a => isForDirectors ? a.IsDirector : a.IsActor)
+                    .OrderBy(a => a.Name));
             }
             return results;
         }

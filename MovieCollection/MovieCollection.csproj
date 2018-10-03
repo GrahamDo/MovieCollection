@@ -114,6 +114,7 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\MovieCollection.Models.Actor.datasource" />
+    <None Include="Properties\DataSources\MovieCollection.Models.ActorDirector.datasource" />
     <None Include="Properties\DataSources\MovieCollection.Models.Location.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
