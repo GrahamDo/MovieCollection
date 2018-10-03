@@ -25,5 +25,6 @@ namespace MovieCollection.Models
         public virtual Location Location { get; set; }
         public virtual ActorDirector ActorDirector { get; set; }
         public virtual ActorDirector ActorDirector1 { get; set; }
+        public virtual ActorDirector ActorDirector11 { get; set; }
     }
 }

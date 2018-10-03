@@ -21,5 +21,8 @@ namespace MovieCollection.Models
         public string LocationDescription { get; set; }
         public string LocationUrl { get; set; }
         public string DirectorName { get; set; }
+        public Nullable<System.Guid> ActorId { get; set; }
+        public Nullable<System.Guid> DirectorId { get; set; }
+        public System.Guid LocationId { get; set; }
     }
 }

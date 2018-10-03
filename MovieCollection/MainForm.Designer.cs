@@ -32,6 +32,7 @@
             this.filterPanel = new System.Windows.Forms.Panel();
             this.directorFilterLabel = new System.Windows.Forms.Label();
             this.directorFilterSelect = new System.Windows.Forms.ComboBox();
+            this.directorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.LocationFilterSelect = new System.Windows.Forms.ComboBox();
             this.locationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.locationFilterLabel = new System.Windows.Forms.Label();
@@ -40,13 +41,22 @@
             this.actorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.yearFilterText = new System.Windows.Forms.TextBox();
             this.yearFilterLabel = new System.Windows.Forms.Label();
-            this.filterTitleText = new System.Windows.Forms.TextBox();
+            this.titleFilterText = new System.Windows.Forms.TextBox();
             this.titleFilterLabel = new System.Windows.Forms.Label();
-            this.directorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.movieResultsGrid = new System.Windows.Forms.DataGridView();
+            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.yearDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.actorNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.directorNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.locationDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.locationUrlDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.movieResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.filterPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.directorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actorBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.directorBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.movieResultsGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.movieResultBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // filterPanel
@@ -59,7 +69,7 @@
             this.filterPanel.Controls.Add(this.actorFilterSelect);
             this.filterPanel.Controls.Add(this.yearFilterText);
             this.filterPanel.Controls.Add(this.yearFilterLabel);
-            this.filterPanel.Controls.Add(this.filterTitleText);
+            this.filterPanel.Controls.Add(this.titleFilterText);
             this.filterPanel.Controls.Add(this.titleFilterLabel);
             this.filterPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.filterPanel.Location = new System.Drawing.Point(0, 0);
@@ -85,6 +95,11 @@
             this.directorFilterSelect.Size = new System.Drawing.Size(121, 21);
             this.directorFilterSelect.TabIndex = 8;
             // 
+            // directorBindingSource
+            // 
+            this.directorBindingSource.DataSource = typeof(MovieCollection.Models.ActorDirector);
+            this.directorBindingSource.CurrentChanged += new System.EventHandler(this.directorBindingSource_CurrentChanged);
+            // 
             // LocationFilterSelect
             // 
             this.LocationFilterSelect.DataSource = this.locationBindingSource;
@@ -97,6 +112,7 @@
             // locationBindingSource
             // 
             this.locationBindingSource.DataSource = typeof(MovieCollection.Models.Location);
+            this.locationBindingSource.CurrentChanged += new System.EventHandler(this.locationBindingSource_CurrentChanged);
             // 
             // locationFilterLabel
             // 
@@ -128,6 +144,7 @@
             // actorBindingSource
             // 
             this.actorBindingSource.DataSource = typeof(MovieCollection.Models.ActorDirector);
+            this.actorBindingSource.CurrentChanged += new System.EventHandler(this.actorBindingSource_CurrentChanged);
             // 
             // yearFilterText
             // 
@@ -135,6 +152,7 @@
             this.yearFilterText.Name = "yearFilterText";
             this.yearFilterText.Size = new System.Drawing.Size(54, 20);
             this.yearFilterText.TabIndex = 3;
+            this.yearFilterText.TextChanged += new System.EventHandler(this.yearFilterText_TextChanged);
             this.yearFilterText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.yearFilterText_KeyPress);
             // 
             // yearFilterLabel
@@ -146,14 +164,15 @@
             this.yearFilterLabel.TabIndex = 2;
             this.yearFilterLabel.Text = "Year:";
             // 
-            // filterTitleText
+            // titleFilterText
             // 
-            this.filterTitleText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.titleFilterText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.filterTitleText.Location = new System.Drawing.Point(40, 5);
-            this.filterTitleText.Name = "filterTitleText";
-            this.filterTitleText.Size = new System.Drawing.Size(247, 20);
-            this.filterTitleText.TabIndex = 1;
+            this.titleFilterText.Location = new System.Drawing.Point(40, 5);
+            this.titleFilterText.Name = "titleFilterText";
+            this.titleFilterText.Size = new System.Drawing.Size(247, 20);
+            this.titleFilterText.TabIndex = 1;
+            this.titleFilterText.TextChanged += new System.EventHandler(this.titleFilterText_TextChanged);
             // 
             // titleFilterLabel
             // 
@@ -164,23 +183,101 @@
             this.titleFilterLabel.TabIndex = 0;
             this.titleFilterLabel.Text = "Title:";
             // 
-            // directorBindingSource
+            // movieResultsGrid
             // 
-            this.directorBindingSource.DataSource = typeof(MovieCollection.Models.ActorDirector);
+            this.movieResultsGrid.AllowUserToAddRows = false;
+            this.movieResultsGrid.AllowUserToDeleteRows = false;
+            this.movieResultsGrid.AllowUserToResizeRows = false;
+            this.movieResultsGrid.AutoGenerateColumns = false;
+            this.movieResultsGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.movieResultsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.movieResultsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.titleDataGridViewTextBoxColumn,
+            this.yearDataGridViewTextBoxColumn,
+            this.actorNameDataGridViewTextBoxColumn,
+            this.directorNameDataGridViewTextBoxColumn,
+            this.locationDescriptionDataGridViewTextBoxColumn,
+            this.locationUrlDataGridViewTextBoxColumn});
+            this.movieResultsGrid.DataSource = this.movieResultBindingSource;
+            this.movieResultsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.movieResultsGrid.Location = new System.Drawing.Point(0, 100);
+            this.movieResultsGrid.MultiSelect = false;
+            this.movieResultsGrid.Name = "movieResultsGrid";
+            this.movieResultsGrid.ReadOnly = true;
+            this.movieResultsGrid.RowHeadersVisible = false;
+            this.movieResultsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.movieResultsGrid.Size = new System.Drawing.Size(454, 161);
+            this.movieResultsGrid.TabIndex = 1;
+            // 
+            // titleDataGridViewTextBoxColumn
+            // 
+            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
+            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
+            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
+            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
+            this.titleDataGridViewTextBoxColumn.Width = 52;
+            // 
+            // yearDataGridViewTextBoxColumn
+            // 
+            this.yearDataGridViewTextBoxColumn.DataPropertyName = "Year";
+            this.yearDataGridViewTextBoxColumn.HeaderText = "Year";
+            this.yearDataGridViewTextBoxColumn.Name = "yearDataGridViewTextBoxColumn";
+            this.yearDataGridViewTextBoxColumn.ReadOnly = true;
+            this.yearDataGridViewTextBoxColumn.Width = 54;
+            // 
+            // actorNameDataGridViewTextBoxColumn
+            // 
+            this.actorNameDataGridViewTextBoxColumn.DataPropertyName = "ActorName";
+            this.actorNameDataGridViewTextBoxColumn.HeaderText = "Actor";
+            this.actorNameDataGridViewTextBoxColumn.Name = "actorNameDataGridViewTextBoxColumn";
+            this.actorNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.actorNameDataGridViewTextBoxColumn.Width = 57;
+            // 
+            // directorNameDataGridViewTextBoxColumn
+            // 
+            this.directorNameDataGridViewTextBoxColumn.DataPropertyName = "DirectorName";
+            this.directorNameDataGridViewTextBoxColumn.HeaderText = "Director";
+            this.directorNameDataGridViewTextBoxColumn.Name = "directorNameDataGridViewTextBoxColumn";
+            this.directorNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.directorNameDataGridViewTextBoxColumn.Width = 69;
+            // 
+            // locationDescriptionDataGridViewTextBoxColumn
+            // 
+            this.locationDescriptionDataGridViewTextBoxColumn.DataPropertyName = "LocationDescription";
+            this.locationDescriptionDataGridViewTextBoxColumn.HeaderText = "Location";
+            this.locationDescriptionDataGridViewTextBoxColumn.Name = "locationDescriptionDataGridViewTextBoxColumn";
+            this.locationDescriptionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.locationDescriptionDataGridViewTextBoxColumn.Width = 73;
+            // 
+            // locationUrlDataGridViewTextBoxColumn
+            // 
+            this.locationUrlDataGridViewTextBoxColumn.DataPropertyName = "LocationUrl";
+            this.locationUrlDataGridViewTextBoxColumn.HeaderText = "Location URL";
+            this.locationUrlDataGridViewTextBoxColumn.Name = "locationUrlDataGridViewTextBoxColumn";
+            this.locationUrlDataGridViewTextBoxColumn.ReadOnly = true;
+            this.locationUrlDataGridViewTextBoxColumn.Width = 98;
+            // 
+            // movieResultBindingSource
+            // 
+            this.movieResultBindingSource.DataSource = typeof(MovieCollection.Models.MovieResult);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(454, 261);
+            this.Controls.Add(this.movieResultsGrid);
             this.Controls.Add(this.filterPanel);
             this.Name = "MainForm";
             this.Text = "Movie Collection";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.filterPanel.ResumeLayout(false);
             this.filterPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.directorBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.actorBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.directorBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.movieResultsGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.movieResultBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -190,7 +287,7 @@
         private System.Windows.Forms.Panel filterPanel;
         private System.Windows.Forms.TextBox yearFilterText;
         private System.Windows.Forms.Label yearFilterLabel;
-        private System.Windows.Forms.TextBox filterTitleText;
+        private System.Windows.Forms.TextBox titleFilterText;
         private System.Windows.Forms.Label titleFilterLabel;
         private System.Windows.Forms.ComboBox actorFilterSelect;
         private System.Windows.Forms.BindingSource actorBindingSource;
@@ -201,6 +298,14 @@
         private System.Windows.Forms.Label directorFilterLabel;
         private System.Windows.Forms.ComboBox directorFilterSelect;
         private System.Windows.Forms.BindingSource directorBindingSource;
+        private System.Windows.Forms.DataGridView movieResultsGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn yearDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn actorNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn directorNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn locationDescriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn locationUrlDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource movieResultBindingSource;
     }
 }
 

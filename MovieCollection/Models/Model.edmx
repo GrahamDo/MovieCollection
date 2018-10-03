@@ -39,16 +39,15 @@ warning 6002: The table/view 'MovieCollection.dbo.MovieResult' does not have a p
         <EntityType Name="MovieResult">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="Title" />
-            <PropertyRef Name="ActorName" />
-            <PropertyRef Name="DirectorName" />
-            <PropertyRef Name="LocationDescription" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Year" Type="int" />
+          <Property Name="ActorId" Type="uniqueidentifier" />
           <Property Name="ActorName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DirectorId" Type="uniqueidentifier" />
           <Property Name="DirectorName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LocationId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="LocationDescription" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="LocationUrl" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -65,14 +64,14 @@ warning 6002: The table/view 'MovieCollection.dbo.MovieResult' does not have a p
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Movie_Director">
-          <End Role="ActorDirector" Type="Self.ActorDirector" Multiplicity="1" />
-          <End Role="Movie" Type="Self.Movie" Multiplicity="0..1" />
+          <End Role="ActorDirector" Type="Self.ActorDirector" Multiplicity="0..1" />
+          <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ActorDirector">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Movie">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="DirectorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -97,8 +96,11 @@ warning 6002: The table/view 'MovieCollection.dbo.MovieResult' does not have a p
     [MovieResult].[Id] AS [Id], 
     [MovieResult].[Title] AS [Title], 
     [MovieResult].[Year] AS [Year], 
+    [MovieResult].[ActorId] AS [ActorId], 
     [MovieResult].[ActorName] AS [ActorName], 
+    [MovieResult].[DirectorId] AS [DirectorId], 
     [MovieResult].[DirectorName] AS [DirectorName], 
+    [MovieResult].[LocationId] AS [LocationId], 
     [MovieResult].[LocationDescription] AS [LocationDescription], 
     [MovieResult].[LocationUrl] AS [LocationUrl]
     FROM [dbo].[MovieResult] AS [MovieResult]</DefiningQuery>
@@ -143,14 +145,11 @@ warning 6002: The table/view 'MovieCollection.dbo.MovieResult' does not have a p
           <Property Name="DirectorId" Type="Guid" />
           <NavigationProperty Name="ActorDirector" Relationship="MovieCollectionModel.FK_Movie_Actor1" FromRole="Movie" ToRole="ActorDirector" />
           <NavigationProperty Name="ActorDirector1" Relationship="MovieCollectionModel.FK_Movie_Director" FromRole="Movie" ToRole="ActorDirector" />
+          <NavigationProperty Name="ActorDirector11" Relationship="MovieCollectionModel.FK_Movie_Director1" FromRole="Movie" ToRole="ActorDirector" />
         </EntityType>
         <EntityType Name="MovieResult">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="Title" />
-            <PropertyRef Name="ActorName" />
-            <PropertyRef Name="LocationDescription" />
-            <PropertyRef Name="DirectorName" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -159,6 +158,9 @@ warning 6002: The table/view 'MovieCollection.dbo.MovieResult' does not have a p
           <Property Name="LocationDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LocationUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DirectorName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ActorId" Type="Guid" Nullable="true" />
+          <Property Name="DirectorId" Type="Guid" Nullable="true" />
+          <Property Name="LocationId" Type="Guid" Nullable="false" />
         </EntityType>
         <Association Name="FK_Movie_Location">
           <End Role="Location" Type="Self.Location" Multiplicity="1" />
@@ -189,6 +191,10 @@ warning 6002: The table/view 'MovieCollection.dbo.MovieResult' does not have a p
             <End Role="ActorDirector" EntitySet="ActorDirectors" />
             <End Role="Movie" EntitySet="Movies" />
           </AssociationSet>
+          <AssociationSet Name="FK_Movie_Director1" Association="MovieCollectionModel.FK_Movie_Director1">
+            <End Role="ActorDirector" EntitySet="ActorDirectors" />
+            <End Role="Movie" EntitySet="Movies" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ActorDirector">
           <Key>
@@ -200,6 +206,7 @@ warning 6002: The table/view 'MovieCollection.dbo.MovieResult' does not have a p
           <Property Name="IsDirector" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Movies" Relationship="MovieCollectionModel.FK_Movie_Actor1" FromRole="ActorDirector" ToRole="Movie" />
           <NavigationProperty Name="Movie" Relationship="MovieCollectionModel.FK_Movie_Director" FromRole="ActorDirector" ToRole="Movie" />
+          <NavigationProperty Name="Movies1" Relationship="MovieCollectionModel.FK_Movie_Director1" FromRole="ActorDirector" ToRole="Movie" />
         </EntityType>
         <Association Name="FK_Movie_Actor1">
           <End Type="MovieCollectionModel.ActorDirector" Role="ActorDirector" Multiplicity="0..1" />
@@ -222,6 +229,18 @@ warning 6002: The table/view 'MovieCollection.dbo.MovieResult' does not have a p
             </Principal>
             <Dependent Role="Movie">
               <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movie_Director1">
+          <End Type="MovieCollectionModel.ActorDirector" Role="ActorDirector" Multiplicity="0..1" />
+          <End Type="MovieCollectionModel.Movie" Role="Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActorDirector">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movie">
+              <PropertyRef Name="DirectorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -256,6 +275,9 @@ warning 6002: The table/view 'MovieCollection.dbo.MovieResult' does not have a p
           <EntitySetMapping Name="MovieResults">
             <EntityTypeMapping TypeName="MovieCollectionModel.MovieResult">
               <MappingFragment StoreEntitySet="MovieResult">
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="DirectorId" ColumnName="DirectorId" />
+                <ScalarProperty Name="ActorId" ColumnName="ActorId" />
                 <ScalarProperty Name="DirectorName" ColumnName="DirectorName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />

@@ -18,6 +18,7 @@ namespace MovieCollection.Models
         public ActorDirector()
         {
             this.Movies = new HashSet<Movie>();
+            this.Movies1 = new HashSet<Movie>();
         }
     
         public System.Guid Id { get; set; }
@@ -28,5 +29,7 @@ namespace MovieCollection.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Movie> Movies { get; set; }
         public virtual Movie Movie { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Movie> Movies1 { get; set; }
     }
 }
