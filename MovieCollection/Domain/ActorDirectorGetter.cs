@@ -9,7 +9,17 @@ namespace MovieCollection.Domain
     {
         public IEnumerable<ActorDirector> GetListForFilter(bool isForDirectors = false)
         {
-            var dummyActor = new ActorDirector { Id = Guid.Empty, Name = "<Please Select>" };
+            return GetList("<Please Select>", isForDirectors);
+        }
+
+        public IEnumerable<ActorDirector> GetListForAddUpdateMovie(bool isForDirectors = false)
+        {
+            return GetList("<None>", isForDirectors);
+        }
+
+        private IEnumerable<ActorDirector> GetList(string firstItemText, bool isForDirectors=false)
+        {
+            var dummyActor = new ActorDirector { Id = Guid.Empty, Name = firstItemText };
             var results = new List<ActorDirector> { dummyActor };
             using (MovieCollectionEntities context = new MovieCollectionEntities())
                 results.AddRange(context.ActorDirectors

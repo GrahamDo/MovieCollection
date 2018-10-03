@@ -28,7 +28,8 @@ namespace MovieCollection
             actorBindingSource.DataSource = _actorDirectorGetter.GetListForFilter();
             directorBindingSource.DataSource = _actorDirectorGetter.GetListForFilter(
                 isForDirectors: true);
-            locationBindingSource.DataSource = _locationGetter.GetListForFilter();
+            locationBindingSource.DataSource = 
+                _locationGetter.GetList(showPleaseSelect: true);
             _isInitialising = false;
             DoFilter(); //This will set the cursor back to default
         }
@@ -118,11 +119,13 @@ namespace MovieCollection
 
         private void AddMovie()
         {
-            var newMovie = _movieAdder.CreateMovieObjectForAdd();
+            var newMovie = _movieAdder.CreateObjectForAdd();
             using (var frm = new AddUpdateMovieForm(newMovie, _actorDirectorGetter, 
-                _locationGetter))
+                _locationGetter, _movieAdder))
             {
                 frm.ShowDialog();
+                if (frm.IsRefreshRequired)
+                    DoFilter();
             };
         }
     }

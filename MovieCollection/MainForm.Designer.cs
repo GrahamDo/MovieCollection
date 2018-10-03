@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.filterPanel = new System.Windows.Forms.Panel();
-            this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.addMovieButton = new System.Windows.Forms.ToolStripButton();
             this.resultsLabel = new System.Windows.Forms.Label();
             this.directorFilterLabel = new System.Windows.Forms.Label();
             this.directorFilterSelect = new System.Windows.Forms.ComboBox();
@@ -47,6 +45,8 @@
             this.yearFilterLabel = new System.Windows.Forms.Label();
             this.titleFilterText = new System.Windows.Forms.TextBox();
             this.titleFilterLabel = new System.Windows.Forms.Label();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.addMovieButton = new System.Windows.Forms.ToolStripButton();
             this.movieResultsGrid = new System.Windows.Forms.DataGridView();
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.yearDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,10 +58,10 @@
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addMovieMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.filterPanel.SuspendLayout();
-            this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.directorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actorBindingSource)).BeginInit();
+            this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.movieResultsGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieResultBindingSource)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -86,26 +86,6 @@
             this.filterPanel.Name = "filterPanel";
             this.filterPanel.Size = new System.Drawing.Size(454, 148);
             this.filterPanel.TabIndex = 0;
-            // 
-            // toolStrip
-            // 
-            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addMovieButton});
-            this.toolStrip.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(454, 25);
-            this.toolStrip.TabIndex = 11;
-            this.toolStrip.Text = "toolStrip1";
-            // 
-            // addMovieButton
-            // 
-            this.addMovieButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.addMovieButton.Image = ((System.Drawing.Image)(resources.GetObject("addMovieButton.Image")));
-            this.addMovieButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.addMovieButton.Name = "addMovieButton";
-            this.addMovieButton.Size = new System.Drawing.Size(69, 22);
-            this.addMovieButton.Text = "Add Movie";
-            this.addMovieButton.Click += new System.EventHandler(this.addMovieButton_Click);
             // 
             // resultsLabel
             // 
@@ -224,6 +204,26 @@
             this.titleFilterLabel.TabIndex = 0;
             this.titleFilterLabel.Text = "Title:";
             // 
+            // toolStrip
+            // 
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addMovieButton});
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(454, 25);
+            this.toolStrip.TabIndex = 11;
+            this.toolStrip.Text = "toolStrip1";
+            // 
+            // addMovieButton
+            // 
+            this.addMovieButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.addMovieButton.Image = ((System.Drawing.Image)(resources.GetObject("addMovieButton.Image")));
+            this.addMovieButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.addMovieButton.Name = "addMovieButton";
+            this.addMovieButton.Size = new System.Drawing.Size(69, 22);
+            this.addMovieButton.Text = "Add Movie";
+            this.addMovieButton.Click += new System.EventHandler(this.addMovieButton_Click);
+            // 
             // movieResultsGrid
             // 
             this.movieResultsGrid.AllowUserToAddRows = false;
@@ -239,6 +239,7 @@
             this.directorNameDataGridViewTextBoxColumn,
             this.locationDescriptionDataGridViewTextBoxColumn,
             this.locationUrlDataGridViewTextBoxColumn});
+            this.movieResultsGrid.ContextMenuStrip = this.contextMenuStrip;
             this.movieResultsGrid.DataSource = this.movieResultBindingSource;
             this.movieResultsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.movieResultsGrid.Location = new System.Drawing.Point(0, 148);
@@ -328,11 +329,11 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.filterPanel.ResumeLayout(false);
             this.filterPanel.PerformLayout();
-            this.toolStrip.ResumeLayout(false);
-            this.toolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.directorBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.actorBindingSource)).EndInit();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.movieResultsGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieResultBindingSource)).EndInit();
             this.contextMenuStrip.ResumeLayout(false);
