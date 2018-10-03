@@ -17,6 +17,7 @@ namespace MovieCollection
         {
             //TODO Add a splash screen while loading all this stuff (it could take a while
             //     with lots of actors, directors, or locations)
+            Cursor = Cursors.WaitCursor;
             InitializeComponent();
             _actorDirectorGetter = new ActorDirectorGetter();
             _locationGetter = new LocationGetter();
@@ -27,7 +28,7 @@ namespace MovieCollection
                 isForDirectors: true);
             locationBindingSource.DataSource = _locationGetter.GetListForFilter();
             _isInitialising = false;
-            DoFilter();
+            DoFilter(); //This will set the cursor back to default
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -72,25 +73,33 @@ namespace MovieCollection
             if (_isInitialising || _formIsClosing)
                 return;
 
-            movieResultBindingSource.DataSource = null;
-            var title = titleFilterText.Text.Trim();
-            var year = yearFilterText.Text == string.Empty ? 0 : 
-                Convert.ToInt32(yearFilterText.Text);
-            var actorId = ((ActorDirector)actorBindingSource.Current).Id;
-            var directorId = ((ActorDirector)directorBindingSource.Current).Id;
-            var locationId = ((Location)locationBindingSource.Current).Id;
-
-            var data = _movieResultGetter.Search(title, year, actorId, directorId, 
-                locationId);
-            if (_movieResultGetter.IsMaxResultsCountExceeded(data,
-                Settings.Default.MaxResultsAllowed))
+            try
             {
-                resultsLabel.Text = "Too many records returned. Please narrow your filter.";
-                return;
-            }
+                Cursor = Cursors.WaitCursor;
+                movieResultBindingSource.DataSource = null;
+                var title = titleFilterText.Text.Trim();
+                var year = yearFilterText.Text == string.Empty ? 0 :
+                    Convert.ToInt32(yearFilterText.Text);
+                var actorId = ((ActorDirector)actorBindingSource.Current).Id;
+                var directorId = ((ActorDirector)directorBindingSource.Current).Id;
+                var locationId = ((Location)locationBindingSource.Current).Id;
 
-            movieResultBindingSource.DataSource = data;
-            resultsLabel.Text = $"{data.Count} result{Pluralise(data.Count)} returned.";
+                var data = _movieResultGetter.Search(title, year, actorId, directorId,
+                    locationId);
+                if (_movieResultGetter.IsMaxResultsCountExceeded(data,
+                    Settings.Default.MaxResultsAllowed))
+                {
+                    resultsLabel.Text = "Too many records returned. Please narrow your filter.";
+                    return;
+                }
+
+                movieResultBindingSource.DataSource = data;
+                resultsLabel.Text = $"{data.Count} result{Pluralise(data.Count)} returned.";
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
         }
 
         private object Pluralise(int count) => count == 1 ? "" : "s";
