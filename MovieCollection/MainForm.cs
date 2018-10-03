@@ -35,6 +35,7 @@ namespace MovieCollection
                 _locationGetter.GetList(showPleaseSelect: true);
             _isInitialising = false;
             DoFilter(); //This will set the cursor back to default
+            //TODO Implement sorting on the grid
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

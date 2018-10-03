@@ -86,6 +86,7 @@ namespace MovieCollection
             Cursor = Cursors.WaitCursor;
             try
             {
+                //TODO Move validation onto model
                 if (string.IsNullOrWhiteSpace(_movie.Title))
                 {
                     MessageBox.Show("Title cannot be blank.", Text, MessageBoxButtons.OK,
