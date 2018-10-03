@@ -33,6 +33,12 @@ namespace MovieCollection
                 _locationGetter.GetList();
             if (_movie.IsNew)
                 Text = "Add Movie";
+            else
+            {
+                Text = _movie.Title;
+                submitButton.Text = "OK";
+                closeButton.Text = "Cancel";
+            }
         }
 
         private void yearText_KeyPress(object sender, KeyPressEventArgs e)
@@ -75,7 +81,7 @@ namespace MovieCollection
             }            
         }
 
-        private void addButton_Click(object sender, EventArgs e)
+        private void submitButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
             try
@@ -99,8 +105,21 @@ namespace MovieCollection
                     return;
                 }
 
-                _movieAdder.Add(_movie);
+                if (_movie.IsNew)
+                    _movieAdder.Add(_movie);
+                else
+                {
+                    var updater = new MovieUpdater();
+                    updater.Update(_movie);
+                }
+                
                 IsRefreshRequired = true;
+                if (!_movie.IsNew)
+                {
+                    this.Close();
+                    return;
+                }
+
                 resultLabel.Text = $"{_movie.Title} added successfully.";
                 resultLabel.Visible = true;
                 _movie = _movieAdder.CreateObjectForAdd();

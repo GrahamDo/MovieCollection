@@ -46,7 +46,7 @@
             this.LocationUrlLabel = new System.Windows.Forms.Label();
             this.locationUrlText = new System.Windows.Forms.TextBox();
             this.locationUrlBrowseButton = new System.Windows.Forms.Button();
-            this.addButton = new System.Windows.Forms.Button();
+            this.submitButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
             this.locationUrlBrowseDialog = new System.Windows.Forms.OpenFileDialog();
             this.resultLabel = new System.Windows.Forms.Label();
@@ -191,15 +191,15 @@
             this.locationUrlBrowseButton.UseVisualStyleBackColor = true;
             this.locationUrlBrowseButton.Click += new System.EventHandler(this.locationUrlBrowseButton_Click);
             // 
-            // addButton
+            // submitButton
             // 
-            this.addButton.Location = new System.Drawing.Point(209, 179);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(75, 23);
-            this.addButton.TabIndex = 17;
-            this.addButton.Text = "Add";
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            this.submitButton.Location = new System.Drawing.Point(209, 179);
+            this.submitButton.Name = "submitButton";
+            this.submitButton.Size = new System.Drawing.Size(75, 23);
+            this.submitButton.TabIndex = 17;
+            this.submitButton.Text = "Add";
+            this.submitButton.UseVisualStyleBackColor = true;
+            this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
             // 
             // closeButton
             // 
@@ -223,14 +223,14 @@
             // 
             // AddUpdateMovieForm
             // 
-            this.AcceptButton = this.addButton;
+            this.AcceptButton = this.submitButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.closeButton;
             this.ClientSize = new System.Drawing.Size(377, 229);
             this.Controls.Add(this.resultLabel);
             this.Controls.Add(this.closeButton);
-            this.Controls.Add(this.addButton);
+            this.Controls.Add(this.submitButton);
             this.Controls.Add(this.locationUrlBrowseButton);
             this.Controls.Add(this.locationUrlText);
             this.Controls.Add(this.LocationUrlLabel);
@@ -279,7 +279,7 @@
         private System.Windows.Forms.Label LocationUrlLabel;
         private System.Windows.Forms.TextBox locationUrlText;
         private System.Windows.Forms.Button locationUrlBrowseButton;
-        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.Button submitButton;
         private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.OpenFileDialog locationUrlBrowseDialog;
         private System.Windows.Forms.Label resultLabel;

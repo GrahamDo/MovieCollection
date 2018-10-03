@@ -11,6 +11,7 @@ namespace MovieCollection
         private readonly ActorDirectorGetter _actorDirectorGetter;
         private readonly LocationGetter _locationGetter;
         private readonly MovieResultGetter _movieResultGetter;
+        private readonly MovieGetter _movieGetter;
         private readonly MovieAdder _movieAdder;
         private bool _isInitialising = true;
         private bool _formIsClosing = false;
@@ -24,6 +25,7 @@ namespace MovieCollection
             _actorDirectorGetter = new ActorDirectorGetter();
             _locationGetter = new LocationGetter();
             _movieResultGetter = new MovieResultGetter();
+            _movieGetter = new MovieGetter();
             _movieAdder = new MovieAdder();
 
             actorBindingSource.DataSource = _actorDirectorGetter.GetListForFilter();
@@ -85,6 +87,9 @@ namespace MovieCollection
         private void movieResultBindingSource_CurrentChanged(object sender, EventArgs e)
         {
             var selected = (MovieResult)movieResultBindingSource.Current;
+            if (selected == null)
+                return;
+
             browseToUrlMenu.Enabled = !string.IsNullOrWhiteSpace(selected.LocationUrl);
             browseToUrlButton.Enabled = !string.IsNullOrWhiteSpace(selected.LocationUrl);
         }
@@ -97,6 +102,11 @@ namespace MovieCollection
         private void browseToUrlButton_Click(object sender, EventArgs e)
         {
             BrowseToUrl();
+        }
+
+        private void movieResultsGrid_DoubleClick(object sender, EventArgs e)
+        {
+            EditMovie();
         }
 
         private void DoFilter()
@@ -138,13 +148,25 @@ namespace MovieCollection
         private void AddMovie()
         {
             var newMovie = _movieAdder.CreateObjectForAdd();
-            using (var frm = new AddUpdateMovieForm(newMovie, _actorDirectorGetter, 
+            AddOrEditMovie(newMovie);
+        }
+
+        private void AddOrEditMovie(Movie movie)
+        {
+            using (var frm = new AddUpdateMovieForm(movie, _actorDirectorGetter,
                 _locationGetter, _movieAdder))
             {
                 frm.ShowDialog();
                 if (frm.IsRefreshRequired)
                     DoFilter();
             };
+        }
+
+        private void EditMovie()
+        {
+            var currentMovieResult = (MovieResult)movieResultBindingSource.Current;
+            var movieToEdit = _movieGetter.GetById(currentMovieResult.Id);
+            AddOrEditMovie(movieToEdit);
         }
 
         private void BrowseToUrl()

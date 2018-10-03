@@ -264,6 +264,7 @@
             this.movieResultsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.movieResultsGrid.Size = new System.Drawing.Size(454, 237);
             this.movieResultsGrid.TabIndex = 1;
+            this.movieResultsGrid.DoubleClick += new System.EventHandler(this.movieResultsGrid_DoubleClick);
             // 
             // titleDataGridViewTextBoxColumn
             // 
