@@ -10,14 +10,11 @@ namespace MovieCollection.Domain
         public IEnumerable<ActorDirector> GetListForFilter(bool isForDirectors = false)
         {
             var dummyActor = new ActorDirector { Id = Guid.Empty, Name = "<Please Select>" };
-            var results = new List<ActorDirector>();
-            results.Add(dummyActor);
+            var results = new List<ActorDirector> { dummyActor };
             using (MovieCollectionEntities context = new MovieCollectionEntities())
-            {
                 results.AddRange(context.ActorDirectors
                     .Where(a => isForDirectors ? a.IsDirector : a.IsActor)
                     .OrderBy(a => a.Name));
-            }
             return results;
         }
     }

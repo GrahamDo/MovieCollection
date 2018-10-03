@@ -10,12 +10,9 @@ namespace MovieCollection.Domain
         public IEnumerable<Location> GetListForFilter()
         {
             var dummyLocation = new Location { Id = Guid.Empty, Description = "<Please Select>" };
-            var results = new List<Location>();
-            results.Add(dummyLocation);
+            var results = new List<Location> { dummyLocation };
             using (MovieCollectionEntities context = new MovieCollectionEntities())
-            {
                 results.AddRange(context.Locations.OrderBy(l => l.Description));
-            }
             return results;
         }
     }
