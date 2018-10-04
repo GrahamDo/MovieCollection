@@ -85,27 +85,8 @@ namespace MovieCollection
             Cursor = Cursors.WaitCursor;
             try
             {
-                //TODO Move validation onto model
-                if (string.IsNullOrWhiteSpace(_movie.Title))
-                {
-                    MessageBox.Show("Title cannot be blank.", Text, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
-                if (_movie.ActorId == Guid.Empty)
-                    _movie.ActorId = null;
-                if (_movie.DirectorId == Guid.Empty)
-                    _movie.DirectorId = null;
-
                 var currentLocation = (Location)locationBindingSource.Current;
-                if (currentLocation.IsUrlRequired && string.IsNullOrWhiteSpace(_movie.LocationUrl))
-                {
-                    MessageBox.Show("The selected location requires you to specify a URL.", 
-                        Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                _movie.ConvertUrlToUri(); //In case the user put it in manually and didn't use the browse button
+                _movie.ValidateAndConvertUrl(currentLocation);
                 if (_movie.IsNew)
                     _movieAdder.Add(_movie);
                 else
@@ -126,6 +107,10 @@ namespace MovieCollection
                 _movie = _movieAdder.CreateObjectForAdd();
                 _movie.LocationId = ((Location)locationBindingSource.Current).Id;
                 movieBindingSource.DataSource = _movie;
+            }
+            catch (Movie.MovieValidationException mve)
+            {
+                MessageBox.Show(mve.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
