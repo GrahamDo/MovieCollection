@@ -48,6 +48,7 @@
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.addMovieButton = new System.Windows.Forms.ToolStripButton();
             this.editMovieButton = new System.Windows.Forms.ToolStripButton();
+            this.deleteMovieButton = new System.Windows.Forms.ToolStripButton();
             this.browseToUrlButton = new System.Windows.Forms.ToolStripButton();
             this.movieResultsGrid = new System.Windows.Forms.DataGridView();
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,11 +60,12 @@
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addMovieMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.editMovieMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteMovieMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuSeperator = new System.Windows.Forms.ToolStripSeparator();
             this.browseToUrlMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.movieResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.deleteMovieButton = new System.Windows.Forms.ToolStripButton();
-            this.deleteMovieMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.seperatorButton = new System.Windows.Forms.ToolStripSeparator();
+            this.locationsButton = new System.Windows.Forms.ToolStripButton();
             this.filterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.directorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).BeginInit();
@@ -217,7 +219,9 @@
             this.addMovieButton,
             this.editMovieButton,
             this.deleteMovieButton,
-            this.browseToUrlButton});
+            this.browseToUrlButton,
+            this.seperatorButton,
+            this.locationsButton});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(454, 25);
@@ -243,6 +247,16 @@
             this.editMovieButton.Size = new System.Drawing.Size(67, 22);
             this.editMovieButton.Text = "Edit Movie";
             this.editMovieButton.Click += new System.EventHandler(this.editMovieButton_Click);
+            // 
+            // deleteMovieButton
+            // 
+            this.deleteMovieButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.deleteMovieButton.Image = ((System.Drawing.Image)(resources.GetObject("deleteMovieButton.Image")));
+            this.deleteMovieButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.deleteMovieButton.Name = "deleteMovieButton";
+            this.deleteMovieButton.Size = new System.Drawing.Size(80, 22);
+            this.deleteMovieButton.Text = "Delete Movie";
+            this.deleteMovieButton.Click += new System.EventHandler(this.deleteMovieButton_Click);
             // 
             // browseToUrlButton
             // 
@@ -345,26 +359,33 @@
             // addMovieMenu
             // 
             this.addMovieMenu.Name = "addMovieMenu";
-            this.addMovieMenu.Size = new System.Drawing.Size(152, 22);
+            this.addMovieMenu.Size = new System.Drawing.Size(150, 22);
             this.addMovieMenu.Text = "Add";
             this.addMovieMenu.Click += new System.EventHandler(this.addMovieMenu_Click);
             // 
             // editMovieMenu
             // 
             this.editMovieMenu.Name = "editMovieMenu";
-            this.editMovieMenu.Size = new System.Drawing.Size(152, 22);
+            this.editMovieMenu.Size = new System.Drawing.Size(150, 22);
             this.editMovieMenu.Text = "Edit";
             this.editMovieMenu.Click += new System.EventHandler(this.editMovieMenu_Click);
+            // 
+            // deleteMovieMenu
+            // 
+            this.deleteMovieMenu.Name = "deleteMovieMenu";
+            this.deleteMovieMenu.Size = new System.Drawing.Size(150, 22);
+            this.deleteMovieMenu.Text = "Delete";
+            this.deleteMovieMenu.Click += new System.EventHandler(this.deleteMovieMenu_Click);
             // 
             // contextMenuSeperator
             // 
             this.contextMenuSeperator.Name = "contextMenuSeperator";
-            this.contextMenuSeperator.Size = new System.Drawing.Size(149, 6);
+            this.contextMenuSeperator.Size = new System.Drawing.Size(147, 6);
             // 
             // browseToUrlMenu
             // 
             this.browseToUrlMenu.Name = "browseToUrlMenu";
-            this.browseToUrlMenu.Size = new System.Drawing.Size(152, 22);
+            this.browseToUrlMenu.Size = new System.Drawing.Size(150, 22);
             this.browseToUrlMenu.Text = "Browse to URL";
             this.browseToUrlMenu.Click += new System.EventHandler(this.browseToUrlMenu_Click);
             // 
@@ -373,22 +394,20 @@
             this.movieResultBindingSource.DataSource = typeof(MovieCollection.Models.MovieResult);
             this.movieResultBindingSource.CurrentChanged += new System.EventHandler(this.movieResultBindingSource_CurrentChanged);
             // 
-            // deleteMovieButton
+            // seperatorButton
             // 
-            this.deleteMovieButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.deleteMovieButton.Image = ((System.Drawing.Image)(resources.GetObject("deleteMovieButton.Image")));
-            this.deleteMovieButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.deleteMovieButton.Name = "deleteMovieButton";
-            this.deleteMovieButton.Size = new System.Drawing.Size(80, 22);
-            this.deleteMovieButton.Text = "Delete Movie";
-            this.deleteMovieButton.Click += new System.EventHandler(this.deleteMovieButton_Click);
+            this.seperatorButton.Name = "seperatorButton";
+            this.seperatorButton.Size = new System.Drawing.Size(6, 25);
             // 
-            // deleteMovieMenu
+            // locationsButton
             // 
-            this.deleteMovieMenu.Name = "deleteMovieMenu";
-            this.deleteMovieMenu.Size = new System.Drawing.Size(152, 22);
-            this.deleteMovieMenu.Text = "Delete";
-            this.deleteMovieMenu.Click += new System.EventHandler(this.deleteMovieMenu_Click);
+            this.locationsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.locationsButton.Image = ((System.Drawing.Image)(resources.GetObject("locationsButton.Image")));
+            this.locationsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.locationsButton.Name = "locationsButton";
+            this.locationsButton.Size = new System.Drawing.Size(62, 22);
+            this.locationsButton.Text = "Locations";
+            this.locationsButton.Click += new System.EventHandler(this.locationsButton_Click);
             // 
             // MainForm
             // 
@@ -450,6 +469,8 @@
         private System.Windows.Forms.ToolStripMenuItem editMovieMenu;
         private System.Windows.Forms.ToolStripButton deleteMovieButton;
         private System.Windows.Forms.ToolStripMenuItem deleteMovieMenu;
+        private System.Windows.Forms.ToolStripSeparator seperatorButton;
+        private System.Windows.Forms.ToolStripButton locationsButton;
     }
 }
 

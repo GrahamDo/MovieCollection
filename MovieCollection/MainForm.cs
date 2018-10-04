@@ -237,5 +237,11 @@ namespace MovieCollection
                     Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void locationsButton_Click(object sender, EventArgs e)
+        {
+            var frm = new LocationsForm(_locationGetter);
+            frm.Show();
+        }
     }
 }
