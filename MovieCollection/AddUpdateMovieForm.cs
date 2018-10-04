@@ -74,10 +74,9 @@ namespace MovieCollection
             var dialogResult = locationUrlBrowseDialog.ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
-                var fileUri = GetUriFromPath(locationUrlBrowseDialog.FileName);
-                locationUrlText.Text = fileUri;
-                _movie.LocationUrl = fileUri; 
-                //Doesn't update automatically if you set the textbox programmatically
+                _movie.LocationUrl = locationUrlBrowseDialog.FileName;
+                _movie.ConvertUrlToUri();
+                locationUrlText.Text = _movie.LocationUrl;
             }            
         }
 
@@ -107,7 +106,7 @@ namespace MovieCollection
                 }
 
                 if (!string.IsNullOrWhiteSpace(_movie.LocationUrl) && !_movie.LocationUrl.Contains("//"))
-                    _movie.LocationUrl = GetUriFromPath(_movie.LocationUrl);
+                    _movie.ConvertUrlToUri();
 
                 if (_movie.IsNew)
                     _movieAdder.Add(_movie);
@@ -132,18 +131,6 @@ namespace MovieCollection
             finally
             {
                 Cursor = Cursors.Default;
-            }
-        }
-
-        private string GetUriFromPath(string fileName)
-        {
-            try
-            {
-                var uri = new Uri(fileName);
-                return uri.AbsoluteUri;
-            } catch (UriFormatException)
-            {
-                return fileName; //It's obviously not meant to be a valid URL
             }
         }
     }
