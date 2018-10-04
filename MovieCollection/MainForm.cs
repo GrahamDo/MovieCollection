@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System;
 using MovieCollection.Models;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace MovieCollection
 {
@@ -219,7 +220,15 @@ namespace MovieCollection
         private void BrowseToUrl()
         {
             var currentMovie = (MovieResult)movieResultBindingSource.Current;
-            Process.Start(currentMovie.LocationUrl);
+            try
+            {
+                Process.Start(currentMovie.LocationUrl);
+            }
+            catch (Win32Exception e)
+            {
+                MessageBox.Show($"Unable to browse to URL {currentMovie.LocationUrl}. The error was: {e.Message}.",
+                    Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

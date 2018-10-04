@@ -106,7 +106,7 @@ namespace MovieCollection
                     return;
                 }
 
-                if (!_movie.LocationUrl.Contains("//"))
+                if (!string.IsNullOrWhiteSpace(_movie.LocationUrl) && !_movie.LocationUrl.Contains("//"))
                     _movie.LocationUrl = GetUriFromPath(_movie.LocationUrl);
 
                 if (_movie.IsNew)
@@ -137,8 +137,14 @@ namespace MovieCollection
 
         private string GetUriFromPath(string fileName)
         {
-            var uri = new Uri(fileName);
-            return uri.AbsoluteUri;
+            try
+            {
+                var uri = new Uri(fileName);
+                return uri.AbsoluteUri;
+            } catch (UriFormatException)
+            {
+                return fileName; //It's obviously not meant to be a valid URL
+            }
         }
     }
 }
