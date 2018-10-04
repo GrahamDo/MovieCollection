@@ -119,13 +119,14 @@ namespace MovieCollection
                 IsRefreshRequired = true;
                 if (!_movie.IsNew)
                 {
-                    this.Close();
+                    Close();
                     return;
                 }
 
                 resultLabel.Text = $"{_movie.Title} added successfully.";
                 resultLabel.Visible = true;
                 _movie = _movieAdder.CreateObjectForAdd();
+                _movie.LocationId = ((Location)locationBindingSource.Current).Id;
                 movieBindingSource.DataSource = _movie;
             }
             finally
