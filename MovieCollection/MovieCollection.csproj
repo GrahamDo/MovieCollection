@@ -69,6 +69,7 @@
     <Compile Include="Domain\LocationAdder.cs" />
     <Compile Include="Domain\LocationGetter.cs" />
     <Compile Include="Domain\ActorDirectorGetter.cs" />
+    <Compile Include="Domain\LocationUpdater.cs" />
     <Compile Include="Domain\MovieAdder.cs" />
     <Compile Include="Domain\MovieDeleter.cs" />
     <Compile Include="Domain\MovieGetter.cs" />

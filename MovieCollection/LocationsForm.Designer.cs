@@ -38,6 +38,8 @@
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isUrlRequiredDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.locationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.editButton = new System.Windows.Forms.ToolStripButton();
+            this.editMenu = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -64,11 +66,13 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(250, 236);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
             // 
             // toolStrip
             // 
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addButton});
+            this.addButton,
+            this.editButton});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(250, 25);
@@ -88,14 +92,15 @@
             // contextMenuStrip
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addMenu});
+            this.addMenu,
+            this.editMenu});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(97, 26);
+            this.contextMenuStrip.Size = new System.Drawing.Size(97, 48);
             // 
             // addMenu
             // 
             this.addMenu.Name = "addMenu";
-            this.addMenu.Size = new System.Drawing.Size(96, 22);
+            this.addMenu.Size = new System.Drawing.Size(152, 22);
             this.addMenu.Text = "Add";
             this.addMenu.Click += new System.EventHandler(this.addMenu_Click);
             // 
@@ -116,6 +121,23 @@
             // locationBindingSource
             // 
             this.locationBindingSource.DataSource = typeof(MovieCollection.Models.Location);
+            // 
+            // editButton
+            // 
+            this.editButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.editButton.Image = ((System.Drawing.Image)(resources.GetObject("editButton.Image")));
+            this.editButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(31, 22);
+            this.editButton.Text = "Edit";
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
+            // 
+            // editMenu
+            // 
+            this.editMenu.Name = "editMenu";
+            this.editMenu.Size = new System.Drawing.Size(152, 22);
+            this.editMenu.Text = "Edit";
+            this.editMenu.Click += new System.EventHandler(this.editMenu_Click);
             // 
             // LocationsForm
             // 
@@ -147,5 +169,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem addMenu;
         private System.Windows.Forms.ToolStripButton addButton;
+        private System.Windows.Forms.ToolStripButton editButton;
+        private System.Windows.Forms.ToolStripMenuItem editMenu;
     }
 }
