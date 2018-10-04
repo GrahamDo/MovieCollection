@@ -207,6 +207,9 @@ namespace MovieCollection
         private void EditMovie()
         {
             var currentMovieResult = (MovieResult)movieResultBindingSource.Current;
+            if (currentMovieResult == null)
+                return;
+
             var movieToEdit = _movieGetter.GetById(currentMovieResult.Id);
             AddOrEditMovie(movieToEdit);
         }
