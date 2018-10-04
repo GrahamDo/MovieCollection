@@ -19,9 +19,17 @@ namespace MovieCollection.Domain
                 };
                 results.Add(dummyLocation);
             }
-            using (MovieCollectionEntities context = new MovieCollectionEntities())
+            using (var context = new MovieCollectionEntities())
                 results.AddRange(context.Locations.OrderBy(l => l.Description));
             return results;
+        }
+
+        public bool IsExistingByDescription(string description)
+        {
+            using (var context = new MovieCollectionEntities())
+                return context.Locations
+                    .Where(l => l.Description.ToUpper() == description.ToUpper())
+                    .Count() > 0;
         }
     }
 }
