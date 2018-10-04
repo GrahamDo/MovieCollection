@@ -8,7 +8,8 @@ namespace MovieCollection.Models
 
         public void ConvertUrlToUri()
         {
-            LocationUrl = GetUriFromPath(LocationUrl);
+            if (!string.IsNullOrWhiteSpace(LocationUrl))
+                LocationUrl = GetUriFromPath(LocationUrl);
         }
 
         private string GetUriFromPath(string fileName)

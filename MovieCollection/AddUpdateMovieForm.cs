@@ -105,9 +105,7 @@ namespace MovieCollection
                     return;
                 }
 
-                if (!string.IsNullOrWhiteSpace(_movie.LocationUrl) && !_movie.LocationUrl.Contains("//"))
-                    _movie.ConvertUrlToUri();
-
+                _movie.ConvertUrlToUri(); //In case the user put it in manually and didn't use the browse button
                 if (_movie.IsNew)
                     _movieAdder.Add(_movie);
                 else
