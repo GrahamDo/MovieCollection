@@ -217,6 +217,9 @@ namespace MovieCollection
         private void DeleteMovie()
         {
             var currentMovieResult = (MovieResult)movieResultBindingSource.Current;
+            if (currentMovieResult == null)
+                return;
+
             var confirm = MessageBox.Show($"Are you sure you want to delete {currentMovieResult.Title}?", 
                 Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm == DialogResult.Yes)
