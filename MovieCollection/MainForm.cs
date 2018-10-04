@@ -182,6 +182,13 @@ namespace MovieCollection
 
         private void AddMovie()
         {
+            if (locationBindingSource.Count == 1) //The <Please Select> item
+            {
+                MessageBox.Show("Please add at least one location before attempting " + 
+                    "to add a movie.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var newMovie = _movieAdder.CreateObjectForAdd();
             AddOrEditMovie(newMovie);
         }
