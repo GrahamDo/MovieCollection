@@ -23,6 +23,12 @@ namespace MovieCollection.Domain
                 return context.ActorDirectors.ToList();
         }
 
+        public bool IsExistingByName(string name, Guid id)
+        {
+            using (var context = new MovieCollectionEntities())
+                return context.ActorDirectors.Any(ad => ad.Name.ToUpper() == name.ToUpper() && ad.Id != id);
+        }
+
         private IEnumerable<ActorDirector> GetListOfTypeForCombo(string firstItemText, bool isForDirectors=false)
         {
             var dummyActor = new ActorDirector { Id = Guid.Empty, Name = firstItemText };

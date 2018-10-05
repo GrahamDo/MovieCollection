@@ -9,7 +9,7 @@ namespace MovieCollection
     {
         private readonly ActorDirectorGetter _actorDirectorGetter;
         private readonly MovieGetter _movieGetter;
-        private readonly LocationAdder _locationAdder;
+        private readonly ActorDirectorAdder _actorDirectorAdder;
 
         public event EventHandler DataChanged;
 
@@ -17,7 +17,7 @@ namespace MovieCollection
         {
             Cursor = Cursors.WaitCursor;
             InitializeComponent();
-            _locationAdder = new LocationAdder();
+            _actorDirectorAdder = new ActorDirectorAdder();
             _actorDirectorGetter = actorDirectorGetter;
             _movieGetter = movieGetter;
             RefreshData();
@@ -80,9 +80,8 @@ namespace MovieCollection
 
         private void AddActorDirector()
         {
-            //TODO
-            //var newActorDirector = _locationAdder.CreateObjectForAdd();
-            //AddEditActorDirector(newActorDirector);
+            var newActorDirector = _actorDirectorAdder.CreateObjectForAdd();
+            AddEditActorDirector(newActorDirector);
         }
 
         private void EditLocation()
@@ -96,15 +95,14 @@ namespace MovieCollection
 
         private void AddEditActorDirector(ActorDirector actorDirector)
         {
-            //TODO AddEditActorDirector
-            //using (var frm = new AddUpdateLocationForm(actorDirector, _actorDirectorGetter, _locationAdder))
-            //{
-            //    if (frm.ShowDialog() == DialogResult.OK)
-            //    {
-            //        RefreshData();
-            //        RaiseDataChanged();
-            //    }
-            //}
+            using (var frm = new AddUpdateActorDirectorForm(actorDirector, _actorDirectorGetter, _actorDirectorAdder))
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    RefreshData();
+                    RaiseDataChanged();
+                }
+            }
         }
 
         private void DeleteLocation()
