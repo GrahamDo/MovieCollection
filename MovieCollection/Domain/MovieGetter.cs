@@ -9,22 +9,22 @@ namespace MovieCollection.Domain
         public Movie GetById(Guid id)
         {
             using (var context = new MovieCollectionEntities())
-                return context.Movies.Where(m => m.Id == id).FirstOrDefault();
+                return context.Movies.FirstOrDefault(m => m.Id == id);
         }
 
-        public bool IsMovieExistingByLocationId(Guid locationId)
+        public bool IsExistingByLocationId(Guid locationId)
         {
             using (var context = new MovieCollectionEntities())
                 return context.Movies.Any(m => m.LocationId == locationId);
         }
 
-        public bool IsMovieExistingByDirectorId(Guid directorId)
+        public bool IsExistingByDirectorId(Guid directorId)
         {
             using (var context = new MovieCollectionEntities())
                 return context.Movies.Any(m => m.DirectorId == directorId);
         }
 
-        public bool IsMovieExistingByActorId(Guid actorId)
+        public bool IsExistingByActorId(Guid actorId)
         {
             using (var context = new MovieCollectionEntities())
                 return context.Movies.Any(m => m.ActorId == actorId);

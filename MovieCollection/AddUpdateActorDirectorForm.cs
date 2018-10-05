@@ -12,7 +12,9 @@ namespace MovieCollection
         private ActorDirectorUpdater _actorDirectorUpdater;
         private MovieGetter _movieGetter;
 
-        public AddUpdateActorDirectorForm(ActorDirector actorDirector, ActorDirectorGetter actorDirectorGetter, ActorDirectorAdder actorDirectorAdder, MovieGetter movieGetter)
+        public AddUpdateActorDirectorForm(ActorDirector actorDirector, 
+            ActorDirectorGetter actorDirectorGetter, ActorDirectorAdder actorDirectorAdder, 
+            MovieGetter movieGetter)
         {
             InitializeComponent();
             _actorDirector = actorDirector;
@@ -23,7 +25,7 @@ namespace MovieCollection
             actorDirectorBindingSource.DataSource = _actorDirector;
 
             if (_actorDirector.IsNew)
-                base.Text = "Add Location";
+                base.Text = "Add Actor / Director";
             else
                 base.Text = _actorDirector.Name;
         }
@@ -40,9 +42,9 @@ namespace MovieCollection
                     _actorDirectorUpdater.Update(_actorDirector);
                 DialogResult = DialogResult.OK;
             }
-            catch (ActorDirector.ActorDirectorValidationException lve)
+            catch (ActorDirector.ActorDirectorValidationException adve)
             {
-                MessageBox.Show(lve.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(adve.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

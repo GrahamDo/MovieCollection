@@ -31,11 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.nameLabel = new System.Windows.Forms.Label();
             this.descriptionText = new System.Windows.Forms.TextBox();
+            this.actorDirectorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.isActorCheckbox = new System.Windows.Forms.CheckBox();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.isDirectorCheckbox = new System.Windows.Forms.CheckBox();
-            this.actorDirectorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.actorDirectorBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +55,11 @@
             this.descriptionText.MaxLength = 50;
             this.descriptionText.Name = "descriptionText";
             this.descriptionText.Size = new System.Drawing.Size(191, 20);
-            this.descriptionText.TabIndex = 1;
+            this.descriptionText.TabIndex = 0;
+            // 
+            // actorDirectorBindingSource
+            // 
+            this.actorDirectorBindingSource.DataSource = typeof(MovieCollection.Models.ActorDirector);
             // 
             // isActorCheckbox
             // 
@@ -64,7 +68,7 @@
             this.isActorCheckbox.Location = new System.Drawing.Point(26, 33);
             this.isActorCheckbox.Name = "isActorCheckbox";
             this.isActorCheckbox.Size = new System.Drawing.Size(68, 17);
-            this.isActorCheckbox.TabIndex = 2;
+            this.isActorCheckbox.TabIndex = 1;
             this.isActorCheckbox.Text = "Is Actor?";
             this.isActorCheckbox.UseVisualStyleBackColor = true;
             // 
@@ -95,13 +99,9 @@
             this.isDirectorCheckbox.Location = new System.Drawing.Point(116, 33);
             this.isDirectorCheckbox.Name = "isDirectorCheckbox";
             this.isDirectorCheckbox.Size = new System.Drawing.Size(74, 17);
-            this.isDirectorCheckbox.TabIndex = 5;
+            this.isDirectorCheckbox.TabIndex = 2;
             this.isDirectorCheckbox.Text = "Is Director";
             this.isDirectorCheckbox.UseVisualStyleBackColor = true;
-            // 
-            // actorDirectorBindingSource
-            // 
-            this.actorDirectorBindingSource.DataSource = typeof(MovieCollection.Models.ActorDirector);
             // 
             // AddUpdateActorDirectorForm
             // 

@@ -39,10 +39,10 @@ namespace MovieCollection.Models
 
         private void DoMovieChecks(bool checkForDirector, bool checkForActor, MovieGetter movieGetter)
         {
-            if (checkForDirector && movieGetter.IsMovieExistingByDirectorId(Id))
+            if (checkForDirector && movieGetter.IsExistingByDirectorId(Id))
                 throw new ActorDirectorValidationException("At least one movie uses this director. Please move or remove " +
                     "it and try again.");
-            if (checkForActor && movieGetter.IsMovieExistingByActorId(Id))
+            if (checkForActor && movieGetter.IsExistingByActorId(Id))
                 throw new ActorDirectorValidationException("At least one movie uses this actor. Please move or remove " +
                     "it and try again.");
         }

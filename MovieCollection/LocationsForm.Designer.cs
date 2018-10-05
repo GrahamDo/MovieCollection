@@ -67,7 +67,7 @@
             this.locationsGrid.RowHeadersVisible = false;
             this.locationsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.locationsGrid.Size = new System.Drawing.Size(250, 236);
-            this.locationsGrid.TabIndex = 0;
+            this.locationsGrid.TabIndex = 1;
             this.locationsGrid.DoubleClick += new System.EventHandler(this.locationsGrid_DoubleClick);
             this.locationsGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.locationsGrid_KeyDown);
             // 
@@ -128,7 +128,7 @@
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(250, 25);
-            this.toolStrip.TabIndex = 1;
+            this.toolStrip.TabIndex = 0;
             this.toolStrip.Text = "toolStrip1";
             // 
             // addButton

@@ -34,12 +34,6 @@ namespace MovieCollection
             AddLocation();
         }
 
-        private void RefreshData()
-        {
-            var locations = _locationGetter.GetList();
-            locationBindingSource.DataSource = locations;
-        }
-
         private void editButton_Click(object sender, EventArgs e)
         {
             EditLocation();
@@ -136,10 +130,15 @@ namespace MovieCollection
             }
         }
 
+        private void RefreshData()
+        {
+            var locations = _locationGetter.GetList();
+            locationBindingSource.DataSource = locations;
+        }
+
         private void RaiseDataChanged()
         {
-            if (DataChanged != null)
-                DataChanged(this, new EventArgs());
+            DataChanged?.Invoke(this, new EventArgs());
         }
     }
 }

@@ -30,48 +30,69 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActorsDirectorsForm));
-            this.locationsGrid = new System.Windows.Forms.DataGridView();
+            this.actorDirectorsGrid = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isActorDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isDirectorDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.editMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.actorDirectorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.addButton = new System.Windows.Forms.ToolStripButton();
             this.editButton = new System.Windows.Forms.ToolStripButton();
             this.deleteButton = new System.Windows.Forms.ToolStripButton();
-            this.actorDirectorBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isActorDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isDirectorDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.locationsGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.actorDirectorsGrid)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
-            this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.actorDirectorBindingSource)).BeginInit();
+            this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // locationsGrid
+            // actorDirectorsGrid
             // 
-            this.locationsGrid.AllowUserToAddRows = false;
-            this.locationsGrid.AllowUserToDeleteRows = false;
-            this.locationsGrid.AllowUserToResizeRows = false;
-            this.locationsGrid.AutoGenerateColumns = false;
-            this.locationsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.locationsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.actorDirectorsGrid.AllowUserToAddRows = false;
+            this.actorDirectorsGrid.AllowUserToDeleteRows = false;
+            this.actorDirectorsGrid.AllowUserToResizeRows = false;
+            this.actorDirectorsGrid.AutoGenerateColumns = false;
+            this.actorDirectorsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.actorDirectorsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
             this.isActorDataGridViewCheckBoxColumn,
             this.isDirectorDataGridViewCheckBoxColumn});
-            this.locationsGrid.ContextMenuStrip = this.contextMenuStrip;
-            this.locationsGrid.DataSource = this.actorDirectorBindingSource;
-            this.locationsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.locationsGrid.Location = new System.Drawing.Point(0, 25);
-            this.locationsGrid.Name = "locationsGrid";
-            this.locationsGrid.ReadOnly = true;
-            this.locationsGrid.RowHeadersVisible = false;
-            this.locationsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.locationsGrid.Size = new System.Drawing.Size(309, 236);
-            this.locationsGrid.TabIndex = 0;
-            this.locationsGrid.DoubleClick += new System.EventHandler(this.locationsGrid_DoubleClick);
-            this.locationsGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.locationsGrid_KeyDown);
+            this.actorDirectorsGrid.ContextMenuStrip = this.contextMenuStrip;
+            this.actorDirectorsGrid.DataSource = this.actorDirectorBindingSource;
+            this.actorDirectorsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.actorDirectorsGrid.Location = new System.Drawing.Point(0, 25);
+            this.actorDirectorsGrid.Name = "actorDirectorsGrid";
+            this.actorDirectorsGrid.ReadOnly = true;
+            this.actorDirectorsGrid.RowHeadersVisible = false;
+            this.actorDirectorsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.actorDirectorsGrid.Size = new System.Drawing.Size(309, 236);
+            this.actorDirectorsGrid.TabIndex = 1;
+            this.actorDirectorsGrid.DoubleClick += new System.EventHandler(this.actorDirectorsGrid_DoubleClick);
+            this.actorDirectorsGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.actorDirectorsGrid_KeyDown);
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // isActorDataGridViewCheckBoxColumn
+            // 
+            this.isActorDataGridViewCheckBoxColumn.DataPropertyName = "IsActor";
+            this.isActorDataGridViewCheckBoxColumn.HeaderText = "Actor?";
+            this.isActorDataGridViewCheckBoxColumn.Name = "isActorDataGridViewCheckBoxColumn";
+            this.isActorDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // isDirectorDataGridViewCheckBoxColumn
+            // 
+            this.isDirectorDataGridViewCheckBoxColumn.DataPropertyName = "IsDirector";
+            this.isDirectorDataGridViewCheckBoxColumn.HeaderText = "Director?";
+            this.isDirectorDataGridViewCheckBoxColumn.Name = "isDirectorDataGridViewCheckBoxColumn";
+            this.isDirectorDataGridViewCheckBoxColumn.ReadOnly = true;
             // 
             // contextMenuStrip
             // 
@@ -103,6 +124,10 @@
             this.deleteMenu.Text = "Delete";
             this.deleteMenu.Click += new System.EventHandler(this.deleteMenu_Click);
             // 
+            // actorDirectorBindingSource
+            // 
+            this.actorDirectorBindingSource.DataSource = typeof(MovieCollection.Models.ActorDirector);
+            // 
             // toolStrip
             // 
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -112,7 +137,7 @@
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(309, 25);
-            this.toolStrip.TabIndex = 1;
+            this.toolStrip.TabIndex = 0;
             this.toolStrip.Text = "toolStrip1";
             // 
             // addButton
@@ -145,46 +170,21 @@
             this.deleteButton.Text = "Delete";
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
-            // actorDirectorBindingSource
-            // 
-            this.actorDirectorBindingSource.DataSource = typeof(MovieCollection.Models.ActorDirector);
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // isActorDataGridViewCheckBoxColumn
-            // 
-            this.isActorDataGridViewCheckBoxColumn.DataPropertyName = "IsActor";
-            this.isActorDataGridViewCheckBoxColumn.HeaderText = "Actor?";
-            this.isActorDataGridViewCheckBoxColumn.Name = "isActorDataGridViewCheckBoxColumn";
-            this.isActorDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // isDirectorDataGridViewCheckBoxColumn
-            // 
-            this.isDirectorDataGridViewCheckBoxColumn.DataPropertyName = "IsDirector";
-            this.isDirectorDataGridViewCheckBoxColumn.HeaderText = "Director?";
-            this.isDirectorDataGridViewCheckBoxColumn.Name = "isDirectorDataGridViewCheckBoxColumn";
-            this.isDirectorDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
             // ActorsDirectorsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(309, 261);
-            this.Controls.Add(this.locationsGrid);
+            this.Controls.Add(this.actorDirectorsGrid);
             this.Controls.Add(this.toolStrip);
             this.Name = "ActorsDirectorsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Actors / Directors";
-            ((System.ComponentModel.ISupportInitialize)(this.locationsGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.actorDirectorsGrid)).EndInit();
             this.contextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.actorDirectorBindingSource)).EndInit();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.actorDirectorBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,7 +192,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView locationsGrid;
+        private System.Windows.Forms.DataGridView actorDirectorsGrid;
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem addMenu;

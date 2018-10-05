@@ -30,7 +30,7 @@ namespace MovieCollection.Models
 
         public void ValidateForDelete(MovieGetter movieGetter)
         {
-            if (movieGetter.IsMovieExistingByLocationId(Id))
+            if (movieGetter.IsExistingByLocationId(Id))
                 throw new LocationValidationException("At least one movie uses this location. Please move or remove " + 
                     "it and try again.");
         }

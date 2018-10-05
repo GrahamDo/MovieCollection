@@ -26,7 +26,8 @@ namespace MovieCollection.Domain
         public bool IsExistingByName(string name, Guid id)
         {
             using (var context = new MovieCollectionEntities())
-                return context.ActorDirectors.Any(ad => ad.Name.ToUpper() == name.ToUpper() && ad.Id != id);
+                return context.ActorDirectors
+                    .Any(ad => ad.Name.ToUpper() == name.ToUpper() && ad.Id != id);
         }
 
         private IEnumerable<ActorDirector> GetListOfTypeForCombo(string firstItemText, bool isForDirectors=false)

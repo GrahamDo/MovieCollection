@@ -51,6 +51,7 @@
             this.deleteMovieButton = new System.Windows.Forms.ToolStripButton();
             this.browseToUrlButton = new System.Windows.Forms.ToolStripButton();
             this.seperatorButton = new System.Windows.Forms.ToolStripSeparator();
+            this.actorDirectorsButton = new System.Windows.Forms.ToolStripButton();
             this.locationsButton = new System.Windows.Forms.ToolStripButton();
             this.movieResultsGrid = new System.Windows.Forms.DataGridView();
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,7 +67,6 @@
             this.contextMenuSeperator = new System.Windows.Forms.ToolStripSeparator();
             this.browseToUrlMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.movieResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.actorDirectorsButton = new System.Windows.Forms.ToolStripButton();
             this.filterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.directorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).BeginInit();
@@ -122,7 +122,7 @@
             this.directorFilterSelect.Location = new System.Drawing.Point(228, 55);
             this.directorFilterSelect.Name = "directorFilterSelect";
             this.directorFilterSelect.Size = new System.Drawing.Size(121, 21);
-            this.directorFilterSelect.TabIndex = 8;
+            this.directorFilterSelect.TabIndex = 4;
             // 
             // directorBindingSource
             // 
@@ -136,7 +136,7 @@
             this.LocationFilterSelect.Location = new System.Drawing.Point(65, 82);
             this.LocationFilterSelect.Name = "LocationFilterSelect";
             this.LocationFilterSelect.Size = new System.Drawing.Size(117, 21);
-            this.LocationFilterSelect.TabIndex = 7;
+            this.LocationFilterSelect.TabIndex = 5;
             // 
             // locationBindingSource
             // 
@@ -168,7 +168,7 @@
             this.actorFilterSelect.Location = new System.Drawing.Point(47, 55);
             this.actorFilterSelect.Name = "actorFilterSelect";
             this.actorFilterSelect.Size = new System.Drawing.Size(121, 21);
-            this.actorFilterSelect.TabIndex = 4;
+            this.actorFilterSelect.TabIndex = 3;
             // 
             // actorBindingSource
             // 
@@ -181,7 +181,7 @@
             this.yearFilterText.Location = new System.Drawing.Point(392, 30);
             this.yearFilterText.Name = "yearFilterText";
             this.yearFilterText.Size = new System.Drawing.Size(54, 20);
-            this.yearFilterText.TabIndex = 3;
+            this.yearFilterText.TabIndex = 2;
             this.yearFilterText.TextChanged += new System.EventHandler(this.yearFilterText_TextChanged);
             this.yearFilterText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.yearFilterText_KeyPress);
             // 
@@ -227,7 +227,7 @@
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(512, 25);
-            this.toolStrip.TabIndex = 11;
+            this.toolStrip.TabIndex = 0;
             this.toolStrip.Text = "toolStrip1";
             // 
             // addMovieButton
@@ -275,6 +275,16 @@
             this.seperatorButton.Name = "seperatorButton";
             this.seperatorButton.Size = new System.Drawing.Size(6, 25);
             // 
+            // actorDirectorsButton
+            // 
+            this.actorDirectorsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.actorDirectorsButton.Image = ((System.Drawing.Image)(resources.GetObject("actorDirectorsButton.Image")));
+            this.actorDirectorsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.actorDirectorsButton.Name = "actorDirectorsButton";
+            this.actorDirectorsButton.Size = new System.Drawing.Size(103, 22);
+            this.actorDirectorsButton.Text = "Actors / Directors";
+            this.actorDirectorsButton.Click += new System.EventHandler(this.actorDirectorsButton_Click);
+            // 
             // locationsButton
             // 
             this.locationsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -310,7 +320,7 @@
             this.movieResultsGrid.RowHeadersVisible = false;
             this.movieResultsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.movieResultsGrid.Size = new System.Drawing.Size(512, 237);
-            this.movieResultsGrid.TabIndex = 1;
+            this.movieResultsGrid.TabIndex = 0;
             this.movieResultsGrid.DoubleClick += new System.EventHandler(this.movieResultsGrid_DoubleClick);
             this.movieResultsGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.movieResultsGrid_KeyDown);
             // 
@@ -410,16 +420,6 @@
             // 
             this.movieResultBindingSource.DataSource = typeof(MovieCollection.Models.MovieResult);
             this.movieResultBindingSource.CurrentChanged += new System.EventHandler(this.movieResultBindingSource_CurrentChanged);
-            // 
-            // actorDirectorsButton
-            // 
-            this.actorDirectorsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.actorDirectorsButton.Image = ((System.Drawing.Image)(resources.GetObject("actorDirectorsButton.Image")));
-            this.actorDirectorsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.actorDirectorsButton.Name = "actorDirectorsButton";
-            this.actorDirectorsButton.Size = new System.Drawing.Size(103, 22);
-            this.actorDirectorsButton.Text = "Actors / Directors";
-            this.actorDirectorsButton.Click += new System.EventHandler(this.actorDirectorsButton_Click);
             // 
             // MainForm
             // 

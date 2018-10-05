@@ -1,7 +1,6 @@
 ﻿using MovieCollection.Domain;
 using MovieCollection.Models;
 using System.Windows.Forms;
-using static MovieCollection.Models.Location;
 
 namespace MovieCollection
 {
@@ -39,7 +38,7 @@ namespace MovieCollection
                     _locationUpdater.Update(_location);
                 DialogResult = DialogResult.OK;
             }
-            catch (LocationValidationException lve)
+            catch (Location.LocationValidationException lve)
             {
                 MessageBox.Show(lve.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

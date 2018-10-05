@@ -72,7 +72,7 @@
             this.titleText.MaxLength = 50;
             this.titleText.Name = "titleText";
             this.titleText.Size = new System.Drawing.Size(304, 20);
-            this.titleText.TabIndex = 1;
+            this.titleText.TabIndex = 0;
             // 
             // movieBindingSource
             // 
@@ -85,7 +85,7 @@
             this.yearText.MaxLength = 10;
             this.yearText.Name = "yearText";
             this.yearText.Size = new System.Drawing.Size(54, 20);
-            this.yearText.TabIndex = 2;
+            this.yearText.TabIndex = 1;
             this.yearText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.yearText_KeyPress);
             // 
             // yearLabel
@@ -113,7 +113,7 @@
             this.actorSelect.Location = new System.Drawing.Point(61, 59);
             this.actorSelect.Name = "actorSelect";
             this.actorSelect.Size = new System.Drawing.Size(121, 21);
-            this.actorSelect.TabIndex = 6;
+            this.actorSelect.TabIndex = 2;
             // 
             // actorBindingSource
             // 
@@ -136,7 +136,7 @@
             this.directorSelect.Location = new System.Drawing.Point(61, 86);
             this.directorSelect.Name = "directorSelect";
             this.directorSelect.Size = new System.Drawing.Size(121, 21);
-            this.directorSelect.TabIndex = 10;
+            this.directorSelect.TabIndex = 3;
             // 
             // directorBindingSource
             // 
@@ -150,7 +150,7 @@
             this.locationSelect.Location = new System.Drawing.Point(61, 113);
             this.locationSelect.Name = "locationSelect";
             this.locationSelect.Size = new System.Drawing.Size(117, 21);
-            this.locationSelect.TabIndex = 13;
+            this.locationSelect.TabIndex = 4;
             // 
             // locationBindingSource
             // 
@@ -182,14 +182,14 @@
             this.locationUrlText.MaxLength = 2083;
             this.locationUrlText.Name = "locationUrlText";
             this.locationUrlText.Size = new System.Drawing.Size(235, 20);
-            this.locationUrlText.TabIndex = 15;
+            this.locationUrlText.TabIndex = 5;
             // 
             // locationUrlBrowseButton
             // 
             this.locationUrlBrowseButton.Location = new System.Drawing.Point(337, 137);
             this.locationUrlBrowseButton.Name = "locationUrlBrowseButton";
             this.locationUrlBrowseButton.Size = new System.Drawing.Size(28, 23);
-            this.locationUrlBrowseButton.TabIndex = 16;
+            this.locationUrlBrowseButton.TabIndex = 6;
             this.locationUrlBrowseButton.Text = "...";
             this.locationUrlBrowseButton.UseVisualStyleBackColor = true;
             this.locationUrlBrowseButton.Click += new System.EventHandler(this.locationUrlBrowseButton_Click);
@@ -199,7 +199,7 @@
             this.submitButton.Location = new System.Drawing.Point(209, 179);
             this.submitButton.Name = "submitButton";
             this.submitButton.Size = new System.Drawing.Size(75, 23);
-            this.submitButton.TabIndex = 17;
+            this.submitButton.TabIndex = 7;
             this.submitButton.Text = "Add";
             this.submitButton.UseVisualStyleBackColor = true;
             this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
@@ -210,7 +210,7 @@
             this.closeButton.Location = new System.Drawing.Point(290, 179);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(75, 23);
-            this.closeButton.TabIndex = 18;
+            this.closeButton.TabIndex = 8;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
             // 

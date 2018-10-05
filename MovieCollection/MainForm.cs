@@ -14,14 +14,16 @@ namespace MovieCollection
         private readonly MovieResultGetter _movieResultGetter;
         private readonly MovieGetter _movieGetter;
         private readonly MovieAdder _movieAdder;
-        private bool _isInitialising = true;
-        private bool _formIsClosing = false;
+        private bool _isInitialising;
+        private bool _isFormClosing = false;
 
         public MainForm()
         {
             //TODO Add a splash screen while loading all this stuff (it could take a while
             //     with lots of actors, directors, or locations)
+            //TODO Add an icon for the application and all forms
             Cursor = Cursors.WaitCursor;
+            _isInitialising = true;
             InitializeComponent();
             _actorDirectorGetter = new ActorDirectorGetter();
             _locationGetter = new LocationGetter();
@@ -34,12 +36,12 @@ namespace MovieCollection
             RefreshLocations();
             _isInitialising = false;
             DoFilter(); //This will set the cursor back to default
-            //TODO Implement sorting on the grid
+            //TODO Implement sorting on all grids
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _formIsClosing = true;
+            _isFormClosing = true;
             //DoFilter sometimes fires while the form is closing
         }
 
@@ -142,9 +144,34 @@ namespace MovieCollection
             }
         }
 
+        private void actorDirectorsButton_Click(object sender, EventArgs e)
+        {
+            var frm = new ActorsDirectorsForm(_actorDirectorGetter, _movieGetter);
+            frm.DataChanged += actorsDirectors_DataChanged;
+            frm.Show();
+        }
+
+        private void locationsButton_Click(object sender, EventArgs e)
+        {
+            var frm = new LocationsForm(_locationGetter, _movieGetter);
+            frm.DataChanged += locationsForm_DataChanged;
+            frm.Show();
+        }
+
+        private void actorsDirectors_DataChanged(object sender, EventArgs e)
+        {
+            RefreshActors();
+            RefreshDirectors();
+        }
+
+        private void locationsForm_DataChanged(object sender, EventArgs e)
+        {
+            RefreshLocations();
+        }
+
         private void DoFilter()
         {
-            if (_isInitialising || _formIsClosing)
+            if (_isInitialising || _isFormClosing)
                 return;
 
             try
@@ -176,7 +203,7 @@ namespace MovieCollection
             }
         }
 
-        private object Pluralise(int count) => count == 1 ? "" : "s";
+        private string Pluralise(int count) => count == 1 ? "" : "s";
 
         private void AddMovie()
         {
@@ -240,31 +267,6 @@ namespace MovieCollection
                 MessageBox.Show($"Unable to browse to URL {currentMovie.LocationUrl}. The error was: {e.Message}.",
                     Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void actorDirectorsButton_Click(object sender, EventArgs e)
-        {
-            var frm = new ActorsDirectorsForm(_actorDirectorGetter, _movieGetter);
-            frm.DataChanged += actorsDirectors_DataChanged;
-            frm.Show();
-        }
-
-        private void locationsButton_Click(object sender, EventArgs e)
-        {
-            var frm = new LocationsForm(_locationGetter, _movieGetter);
-            frm.DataChanged += locationsForm_DataChanged;
-            frm.Show();
-        }
-
-        private void actorsDirectors_DataChanged(object sender, EventArgs e)
-        {
-            RefreshActors();
-            RefreshDirectors();
-        }
-
-        private void locationsForm_DataChanged(object sender, EventArgs e)
-        {
-            RefreshLocations();
         }
 
         private void RefreshActors()

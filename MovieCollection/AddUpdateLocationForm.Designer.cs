@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.descriptionText = new System.Windows.Forms.TextBox();
-            this.isUrlRequiredCheckbox = new System.Windows.Forms.CheckBox();
             this.locationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.isUrlRequiredCheckbox = new System.Windows.Forms.CheckBox();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).BeginInit();
@@ -54,7 +54,11 @@
             this.descriptionText.MaxLength = 50;
             this.descriptionText.Name = "descriptionText";
             this.descriptionText.Size = new System.Drawing.Size(191, 20);
-            this.descriptionText.TabIndex = 1;
+            this.descriptionText.TabIndex = 0;
+            // 
+            // locationBindingSource
+            // 
+            this.locationBindingSource.DataSource = typeof(MovieCollection.Models.Location);
             // 
             // isUrlRequiredCheckbox
             // 
@@ -63,20 +67,16 @@
             this.isUrlRequiredCheckbox.Location = new System.Drawing.Point(26, 33);
             this.isUrlRequiredCheckbox.Name = "isUrlRequiredCheckbox";
             this.isUrlRequiredCheckbox.Size = new System.Drawing.Size(99, 17);
-            this.isUrlRequiredCheckbox.TabIndex = 2;
+            this.isUrlRequiredCheckbox.TabIndex = 1;
             this.isUrlRequiredCheckbox.Text = "Requires URL?";
             this.isUrlRequiredCheckbox.UseVisualStyleBackColor = true;
-            // 
-            // locationBindingSource
-            // 
-            this.locationBindingSource.DataSource = typeof(MovieCollection.Models.Location);
             // 
             // okButton
             // 
             this.okButton.Location = new System.Drawing.Point(116, 56);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 3;
+            this.okButton.TabIndex = 2;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
@@ -87,7 +87,7 @@
             this.cancelButton.Location = new System.Drawing.Point(197, 57);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 4;
+            this.cancelButton.TabIndex = 3;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 

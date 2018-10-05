@@ -157,7 +157,7 @@ namespace MovieCollection
 
         private void SelectCorrectLocation()
         {
-            for (var i=0;i<locationSelect.Items.Count;i++)
+            for (var i = 0; i < locationSelect.Items.Count; i++)
             {
                 var location = (Location)locationSelect.Items[i];
                 if (location.Id == _movie.LocationId)
@@ -165,7 +165,7 @@ namespace MovieCollection
                     locationSelect.SelectedIndex = i;
                     break;
                 }
-            }
+            }            
         }
     }
 }

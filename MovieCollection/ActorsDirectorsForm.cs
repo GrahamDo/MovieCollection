@@ -13,7 +13,8 @@ namespace MovieCollection
 
         public event EventHandler DataChanged;
 
-        public ActorsDirectorsForm(ActorDirectorGetter actorDirectorGetter, MovieGetter movieGetter)
+        public ActorsDirectorsForm(ActorDirectorGetter actorDirectorGetter, 
+            MovieGetter movieGetter)
         {
             Cursor = Cursors.WaitCursor;
             InitializeComponent();
@@ -34,33 +35,27 @@ namespace MovieCollection
             AddActorDirector();
         }
 
-        private void RefreshData()
-        {
-            var actorsDirectors = _actorDirectorGetter.GetList();
-            actorDirectorBindingSource.DataSource = actorsDirectors;
-        }
-
         private void editButton_Click(object sender, EventArgs e)
         {
-            EditLocation();
+            EditActorDirector();
         }
 
         private void editMenu_Click(object sender, EventArgs e)
         {
-            EditLocation();
+            EditActorDirector();
         }
 
-        private void locationsGrid_DoubleClick(object sender, EventArgs e)
+        private void actorDirectorsGrid_DoubleClick(object sender, EventArgs e)
         {
-            EditLocation();
+            EditActorDirector();
         }
 
-        private void locationsGrid_KeyDown(object sender, KeyEventArgs e)
+        private void actorDirectorsGrid_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
                 case Keys.Enter:
-                    EditLocation();
+                    EditActorDirector();
                     break;
                 case Keys.Delete:
                     DeleteActorDirector();
@@ -78,13 +73,19 @@ namespace MovieCollection
             DeleteActorDirector();
         }
 
+        private void RefreshData()
+        {
+            var actorsDirectors = _actorDirectorGetter.GetList();
+            actorDirectorBindingSource.DataSource = actorsDirectors;
+        }
+
         private void AddActorDirector()
         {
             var newActorDirector = _actorDirectorAdder.CreateObjectForAdd();
             AddEditActorDirector(newActorDirector);
         }
 
-        private void EditLocation()
+        private void EditActorDirector()
         {
             var actorDirector = (ActorDirector)actorDirectorBindingSource.Current;
             if (actorDirector == null)
@@ -138,8 +139,7 @@ namespace MovieCollection
 
         private void RaiseDataChanged()
         {
-            if (DataChanged != null)
-                DataChanged(this, new EventArgs());
+            DataChanged?.Invoke(this, new EventArgs());
         }
     }
 }
