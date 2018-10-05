@@ -7,6 +7,7 @@ namespace MovieCollection
 {
     public partial class AddUpdateMovieForm : Form
     {
+        private bool _isInitialising;
         private Movie _movie;
         private readonly ActorDirectorGetter _actorDirectorGetter;
         private readonly LocationGetter _locationGetter;
@@ -19,6 +20,7 @@ namespace MovieCollection
         {
             InitializeComponent();
 
+            _isInitialising = true;
             _movie = movie;
             _actorDirectorGetter = actorDirectorGetter;
             _locationGetter = locationGetter;
@@ -31,6 +33,7 @@ namespace MovieCollection
                 _actorDirectorGetter.GetListForAddUpdateMovie(isForDirectors: true);
             locationBindingSource.DataSource =
                 _locationGetter.GetList();
+
             if (_movie.IsNew)
                 Text = "Add Movie";
             else
@@ -38,7 +41,12 @@ namespace MovieCollection
                 Text = _movie.Title;
                 submitButton.Text = "OK";
                 closeButton.Text = "Cancel";
+
+                SelectCorrectActor();
+                SelectCorrectDirector();
+                SelectCorrectLocation();
             }
+            _isInitialising = false;
         }
 
         private void yearText_KeyPress(object sender, KeyPressEventArgs e)
@@ -50,19 +58,22 @@ namespace MovieCollection
         private void actorBindingSource_CurrentChanged(object sender, EventArgs e)
         {
             var currentActor = (ActorDirector)actorBindingSource.Current;
-            _movie.ActorId = currentActor.Id;
+            if (!_isInitialising || _movie.IsNew)
+                _movie.ActorId = currentActor.Id;
         }
 
         private void directorBindingSource_CurrentChanged(object sender, EventArgs e)
         {
-            var currentDirector = (ActorDirector)actorBindingSource.Current;
-            _movie.DirectorId = currentDirector.Id;
+            var currentDirector = (ActorDirector)directorBindingSource.Current;
+            if (!_isInitialising || _movie.IsNew)
+                _movie.DirectorId = currentDirector.Id;
         }
 
         private void locationBindingSource_CurrentChanged(object sender, System.EventArgs e)
         {
             var currentLocation = (Location)locationBindingSource.Current;
-            _movie.LocationId = currentLocation.Id;
+            if (!_isInitialising || _movie.IsNew)
+                _movie.LocationId = currentLocation.Id;
             locationUrlText.Enabled = currentLocation.IsUrlRequired;
             locationUrlBrowseButton.Enabled = currentLocation.IsUrlRequired;
             if (!locationUrlText.Enabled)
@@ -115,6 +126,45 @@ namespace MovieCollection
             finally
             {
                 Cursor = Cursors.Default;
+            }
+        }
+
+        private void SelectCorrectActor()
+        {
+            for (var i = 0; i < actorSelect.Items.Count; i++)
+            {
+                var actor = (ActorDirector)actorSelect.Items[i];
+                if (actor.Id == _movie.ActorId)
+                {
+                    actorSelect.SelectedIndex = i;
+                    break;
+                }
+            }
+        }
+
+        private void SelectCorrectDirector()
+        {
+            for (var i = 0; i < directorSelect.Items.Count; i++)
+            {
+                var director = (ActorDirector)directorSelect.Items[i];
+                if (director.Id == _movie.DirectorId)
+                {
+                    directorSelect.SelectedIndex = i;
+                    break;
+                }
+            }
+        }
+
+        private void SelectCorrectLocation()
+        {
+            for (var i=0;i<locationSelect.Items.Count;i++)
+            {
+                var location = (Location)locationSelect.Items[i];
+                if (location.Id == _movie.LocationId)
+                {
+                    locationSelect.SelectedIndex = i;
+                    break;
+                }
             }
         }
     }
