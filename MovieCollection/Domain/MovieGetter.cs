@@ -17,5 +17,17 @@ namespace MovieCollection.Domain
             using (var context = new MovieCollectionEntities())
                 return context.Movies.Any(m => m.LocationId == locationId);
         }
+
+        public bool IsMovieExistingByDirectorId(Guid directorId)
+        {
+            using (var context = new MovieCollectionEntities())
+                return context.Movies.Any(m => m.DirectorId == directorId);
+        }
+
+        public bool IsMovieExistingByActorId(Guid actorId)
+        {
+            using (var context = new MovieCollectionEntities())
+                return context.Movies.Any(m => m.ActorId == actorId);
+        }
     }
 }

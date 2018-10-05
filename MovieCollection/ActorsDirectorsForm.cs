@@ -63,19 +63,19 @@ namespace MovieCollection
                     EditLocation();
                     break;
                 case Keys.Delete:
-                    DeleteLocation();
+                    DeleteActorDirector();
                     break;
             }
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            DeleteLocation();
+            DeleteActorDirector();
         }
 
         private void deleteMenu_Click(object sender, EventArgs e)
         {
-            DeleteLocation();
+            DeleteActorDirector();
         }
 
         private void AddActorDirector()
@@ -105,7 +105,7 @@ namespace MovieCollection
             }
         }
 
-        private void DeleteLocation()
+        private void DeleteActorDirector()
         {
             var currentActorDirector = (ActorDirector)actorDirectorBindingSource.Current;
             if (currentActorDirector == null)
@@ -114,22 +114,21 @@ namespace MovieCollection
             Cursor = Cursors.WaitCursor;
             try
             {
-                //TODO currentActorDirector.ValidateForDelete(_movieGetter);
+                currentActorDirector.ValidateForDelete(_movieGetter);
 
                 var confirm = MessageBox.Show($"Are you sure you want to delete {currentActorDirector.Name}?",
                     Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (confirm == DialogResult.Yes)
                 {
-                    //TODO
-                    //var deleter = new LocationDeleter();
-                    //deleter.DeleteById(currentActorDirector.Id);
-                    //RefreshData();
-                    //RaiseDataChanged();
+                    var deleter = new ActorDirectorDeleter();
+                    deleter.DeleteById(currentActorDirector.Id);
+                    RefreshData();
+                    RaiseDataChanged();
                 }
             }
-            catch (Location.LocationValidationException lve)
+            catch (ActorDirector.ActorDirectorValidationException adve)
             {
-                MessageBox.Show(lve.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(adve.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

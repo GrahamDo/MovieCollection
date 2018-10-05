@@ -29,5 +29,15 @@ namespace MovieCollection.Models
                 throw new ActorDirectorValidationException(
                     $"An actor or director named {Name} already exists.");
         }
+
+        public void ValidateForDelete(MovieGetter movieGetter)
+        {
+            if (IsDirector && movieGetter.IsMovieExistingByDirectorId(Id))
+                throw new ActorDirectorValidationException("At least one movie uses this director. Please move or remove " +
+                    "it and try again.");
+            if (IsActor && movieGetter.IsMovieExistingByActorId(Id))
+                throw new ActorDirectorValidationException("At least one movie uses this actor. Please move or remove " +
+                    "it and try again.");
+        }
     }
 }

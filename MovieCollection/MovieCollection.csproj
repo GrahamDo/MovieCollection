@@ -74,6 +74,7 @@
     </Compile>
     <Compile Include="Domain\ActorDirectorAdder.cs" />
     <Compile Include="Domain\LocationAdder.cs" />
+    <Compile Include="Domain\ActorDirectorDeleter.cs" />
     <Compile Include="Domain\LocationDeleter.cs" />
     <Compile Include="Domain\LocationGetter.cs" />
     <Compile Include="Domain\ActorDirectorGetter.cs" />
