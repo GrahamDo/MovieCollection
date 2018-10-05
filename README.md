@@ -15,3 +15,7 @@
 1. Add some movies
 1. Enter text in the Title or Year textboxes, and select values in the Actor, Director, and Location dropdowns to filter your list of movies
 1. Double-click a movie to edit it
+
+## Next Steps
+
+For next steps, see the TODOs at the top of MainForm.cs

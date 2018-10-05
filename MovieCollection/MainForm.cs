@@ -21,7 +21,13 @@ namespace MovieCollection
         {
             //TODO Add a splash screen while loading all this stuff (it could take a while
             //     with lots of actors, directors, or locations)
-            //TODO Add an icon for the application and all forms
+            //TODO Add an icon for the application and all resizable forms
+            //TODO Implement sorting on all grids
+            //TODO Move Domain and Models into their own assembly (MovieCollectionLib), so we
+            //     can have multiple types of clients all using it
+            //TODO Add linking table between Movie and Actor, so we can have multiple actors
+            //     per movie, and update UI and all code to support this
+            //TODO Make LocationsForm and ActorsDirectorsForm single instance
             Cursor = Cursors.WaitCursor;
             _isInitialising = true;
             InitializeComponent();
@@ -36,7 +42,6 @@ namespace MovieCollection
             RefreshLocations();
             _isInitialising = false;
             DoFilter(); //This will set the cursor back to default
-            //TODO Implement sorting on all grids
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
