@@ -40,10 +40,10 @@
             this.directorLabel = new System.Windows.Forms.Label();
             this.directorSelect = new System.Windows.Forms.ComboBox();
             this.directorBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.LocationFilterSelect = new System.Windows.Forms.ComboBox();
+            this.locationSelect = new System.Windows.Forms.ComboBox();
             this.locationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.locationLabel = new System.Windows.Forms.Label();
-            this.LocationUrlLabel = new System.Windows.Forms.Label();
+            this.locationUrlLabel = new System.Windows.Forms.Label();
             this.locationUrlText = new System.Windows.Forms.TextBox();
             this.locationUrlBrowseButton = new System.Windows.Forms.Button();
             this.submitButton = new System.Windows.Forms.Button();
@@ -143,14 +143,14 @@
             this.directorBindingSource.DataSource = typeof(MovieCollection.Models.ActorDirector);
             this.directorBindingSource.CurrentChanged += new System.EventHandler(this.directorBindingSource_CurrentChanged);
             // 
-            // LocationFilterSelect
+            // locationSelect
             // 
-            this.LocationFilterSelect.DataSource = this.locationBindingSource;
-            this.LocationFilterSelect.FormattingEnabled = true;
-            this.LocationFilterSelect.Location = new System.Drawing.Point(61, 113);
-            this.LocationFilterSelect.Name = "LocationFilterSelect";
-            this.LocationFilterSelect.Size = new System.Drawing.Size(117, 21);
-            this.LocationFilterSelect.TabIndex = 13;
+            this.locationSelect.DataSource = this.locationBindingSource;
+            this.locationSelect.FormattingEnabled = true;
+            this.locationSelect.Location = new System.Drawing.Point(61, 113);
+            this.locationSelect.Name = "locationSelect";
+            this.locationSelect.Size = new System.Drawing.Size(117, 21);
+            this.locationSelect.TabIndex = 13;
             // 
             // locationBindingSource
             // 
@@ -166,14 +166,14 @@
             this.locationLabel.TabIndex = 12;
             this.locationLabel.Text = "Location:";
             // 
-            // LocationUrlLabel
+            // locationUrlLabel
             // 
-            this.LocationUrlLabel.AutoSize = true;
-            this.LocationUrlLabel.Location = new System.Drawing.Point(58, 147);
-            this.LocationUrlLabel.Name = "LocationUrlLabel";
-            this.LocationUrlLabel.Size = new System.Drawing.Size(32, 13);
-            this.LocationUrlLabel.TabIndex = 14;
-            this.LocationUrlLabel.Text = "URL:";
+            this.locationUrlLabel.AutoSize = true;
+            this.locationUrlLabel.Location = new System.Drawing.Point(58, 147);
+            this.locationUrlLabel.Name = "locationUrlLabel";
+            this.locationUrlLabel.Size = new System.Drawing.Size(32, 13);
+            this.locationUrlLabel.TabIndex = 14;
+            this.locationUrlLabel.Text = "URL:";
             // 
             // locationUrlText
             // 
@@ -236,8 +236,8 @@
             this.Controls.Add(this.submitButton);
             this.Controls.Add(this.locationUrlBrowseButton);
             this.Controls.Add(this.locationUrlText);
-            this.Controls.Add(this.LocationUrlLabel);
-            this.Controls.Add(this.LocationFilterSelect);
+            this.Controls.Add(this.locationUrlLabel);
+            this.Controls.Add(this.locationSelect);
             this.Controls.Add(this.locationLabel);
             this.Controls.Add(this.directorLabel);
             this.Controls.Add(this.directorSelect);
@@ -276,10 +276,10 @@
         private System.Windows.Forms.Label directorLabel;
         private System.Windows.Forms.ComboBox directorSelect;
         private System.Windows.Forms.BindingSource directorBindingSource;
-        private System.Windows.Forms.ComboBox LocationFilterSelect;
+        private System.Windows.Forms.ComboBox locationSelect;
         private System.Windows.Forms.Label locationLabel;
         private System.Windows.Forms.BindingSource locationBindingSource;
-        private System.Windows.Forms.Label LocationUrlLabel;
+        private System.Windows.Forms.Label locationUrlLabel;
         private System.Windows.Forms.TextBox locationUrlText;
         private System.Windows.Forms.Button locationUrlBrowseButton;
         private System.Windows.Forms.Button submitButton;
