@@ -95,7 +95,7 @@ namespace MovieCollection
 
         private void AddEditActorDirector(ActorDirector actorDirector)
         {
-            using (var frm = new AddUpdateActorDirectorForm(actorDirector, _actorDirectorGetter, _actorDirectorAdder))
+            using (var frm = new AddUpdateActorDirectorForm(actorDirector, _actorDirectorGetter, _actorDirectorAdder, _movieGetter))
             {
                 if (frm.ShowDialog() == DialogResult.OK)
                 {

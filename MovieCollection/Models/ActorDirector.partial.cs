@@ -19,7 +19,7 @@ namespace MovieCollection.Models
             return Name;
         }
 
-        public void Validate(ActorDirectorGetter actorDirectorGetter)
+        public void Validate(ActorDirectorGetter actorDirectorGetter, MovieGetter movieGetter)
         {
             if (string.IsNullOrWhiteSpace(Name))
                 throw new ActorDirectorValidationException("Name cannot be blank.");
@@ -28,14 +28,21 @@ namespace MovieCollection.Models
             if (actorDirectorGetter.IsExistingByName(Name, Id))
                 throw new ActorDirectorValidationException(
                     $"An actor or director named {Name} already exists.");
+
+            DoMovieChecks(!IsDirector, !IsActor, movieGetter);
         }
 
         public void ValidateForDelete(MovieGetter movieGetter)
         {
-            if (IsDirector && movieGetter.IsMovieExistingByDirectorId(Id))
+            DoMovieChecks(IsDirector, IsActor, movieGetter);
+        }
+
+        private void DoMovieChecks(bool checkForDirector, bool checkForActor, MovieGetter movieGetter)
+        {
+            if (checkForDirector && movieGetter.IsMovieExistingByDirectorId(Id))
                 throw new ActorDirectorValidationException("At least one movie uses this director. Please move or remove " +
                     "it and try again.");
-            if (IsActor && movieGetter.IsMovieExistingByActorId(Id))
+            if (checkForActor && movieGetter.IsMovieExistingByActorId(Id))
                 throw new ActorDirectorValidationException("At least one movie uses this actor. Please move or remove " +
                     "it and try again.");
         }
