@@ -28,8 +28,7 @@ namespace MovieCollection.Domain
         {
             using (var context = new MovieCollectionEntities())
                 return context.Locations
-                    .Where(l => l.Description.ToUpper() == description.ToUpper() && l.Id != excludedId)
-                    .Count() > 0;
+                    .Any(l => l.Description.ToUpper() == description.ToUpper() && l.Id != excludedId);
         }
     }
 }
