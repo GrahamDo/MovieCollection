@@ -32,8 +32,7 @@ namespace MovieCollection
             actorBindingSource.DataSource = _actorDirectorGetter.GetListForFilter();
             directorBindingSource.DataSource = _actorDirectorGetter.GetListForFilter(
                 isForDirectors: true);
-            locationBindingSource.DataSource = 
-                _locationGetter.GetList(showPleaseSelect: true);
+            RefreshLocations();
             _isInitialising = false;
             DoFilter(); //This will set the cursor back to default
             //TODO Implement sorting on the grid
@@ -247,7 +246,37 @@ namespace MovieCollection
         private void locationsButton_Click(object sender, EventArgs e)
         {
             var frm = new LocationsForm(_locationGetter, _movieGetter);
+            frm.DataChanged += locationsForm_DataChanged;
             frm.Show();
+        }
+
+        private void locationsForm_DataChanged(object sender, EventArgs e)
+        {
+            RefreshLocations();
+        }
+
+        private void RefreshLocations()
+        {
+            var previousLocation = (Location)locationBindingSource.Current;
+            locationBindingSource.DataSource =
+               _locationGetter.GetList(showPleaseSelect: true);
+
+            if (previousLocation == null)
+                return;
+
+            var itemFound = false;
+            for (var i = 0; i < LocationFilterSelect.Items.Count; i++)
+            {
+                var location = (Location)LocationFilterSelect.Items[i];
+                if (location.Id == previousLocation.Id)
+                {
+                    LocationFilterSelect.SelectedIndex = i;
+                    itemFound = true;
+                    break;
+                }
+            }
+            if (!itemFound)
+                LocationFilterSelect.SelectedIndex = 0;
         }
     }
 }

@@ -11,6 +11,8 @@ namespace MovieCollection
         private readonly MovieGetter _movieGetter;
         private readonly LocationAdder _locationAdder;
 
+        public event EventHandler DataChanged;
+
         public LocationsForm(LocationGetter locationGetter, MovieGetter movieGetter)
         {
             Cursor = Cursors.WaitCursor;
@@ -96,7 +98,10 @@ namespace MovieCollection
             using (var frm = new AddUpdateLocationForm(location, _locationGetter, _locationAdder))
             {
                 if (frm.ShowDialog() == DialogResult.OK)
+                {
                     RefreshData();
+                    RaiseDataChanged();
+                }
             }
         }
 
@@ -118,8 +123,10 @@ namespace MovieCollection
                     var deleter = new LocationDeleter();
                     deleter.DeleteById(currentLocation.Id);
                     RefreshData();
+                    RaiseDataChanged();
                 }
-            } catch (Location.LocationValidationException lve)
+            }
+            catch (Location.LocationValidationException lve)
             {
                 MessageBox.Show(lve.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -127,6 +134,12 @@ namespace MovieCollection
             {
                 Cursor = Cursors.Default;
             }
+        }
+
+        private void RaiseDataChanged()
+        {
+            if (DataChanged != null)
+                DataChanged(this, new EventArgs());
         }
     }
 }
