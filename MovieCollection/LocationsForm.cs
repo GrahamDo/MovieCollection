@@ -97,7 +97,7 @@ namespace MovieCollection
         {
             using (var frm = new AddUpdateLocationForm(location, _locationGetter, _locationAdder))
             {
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog() == DialogResult.OK || !location.IsNew)
                 {
                     RefreshData();
                     RaiseDataChanged();

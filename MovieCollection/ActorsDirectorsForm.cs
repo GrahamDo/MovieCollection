@@ -97,7 +97,7 @@ namespace MovieCollection
         {
             using (var frm = new AddUpdateActorDirectorForm(actorDirector, _actorDirectorGetter, _actorDirectorAdder, _movieGetter))
             {
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (frm.ShowDialog() == DialogResult.OK || !actorDirector.IsNew)
                 {
                     RefreshData();
                     RaiseDataChanged();
