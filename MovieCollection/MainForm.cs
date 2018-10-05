@@ -29,9 +29,7 @@ namespace MovieCollection
             _movieGetter = new MovieGetter();
             _movieAdder = new MovieAdder();
 
-            actorBindingSource.DataSource = _actorDirectorGetter.GetListForFilter();
-            directorBindingSource.DataSource = _actorDirectorGetter.GetListForFilter(
-                isForDirectors: true);
+            RefreshActorsDirectors();
             RefreshLocations();
             _isInitialising = false;
             DoFilter(); //This will set the cursor back to default
@@ -243,6 +241,13 @@ namespace MovieCollection
             }
         }
 
+        private void actorDirectorsButton_Click(object sender, EventArgs e)
+        {
+            var frm = new ActorsDirectorsForm(_actorDirectorGetter, _movieGetter);
+            frm.DataChanged += actorsDirectors_DataChanged;
+            frm.Show();
+        }
+
         private void locationsButton_Click(object sender, EventArgs e)
         {
             var frm = new LocationsForm(_locationGetter, _movieGetter);
@@ -250,9 +255,21 @@ namespace MovieCollection
             frm.Show();
         }
 
+        private void actorsDirectors_DataChanged(object sender, EventArgs e)
+        {
+            RefreshActorsDirectors();
+        }
+
         private void locationsForm_DataChanged(object sender, EventArgs e)
         {
             RefreshLocations();
+        }
+
+        private void RefreshActorsDirectors()
+        {
+            actorBindingSource.DataSource = _actorDirectorGetter.GetListForFilter();
+            directorBindingSource.DataSource = _actorDirectorGetter.GetListForFilter(
+                isForDirectors: true);
         }
 
         private void RefreshLocations()

@@ -50,6 +50,8 @@
             this.editMovieButton = new System.Windows.Forms.ToolStripButton();
             this.deleteMovieButton = new System.Windows.Forms.ToolStripButton();
             this.browseToUrlButton = new System.Windows.Forms.ToolStripButton();
+            this.seperatorButton = new System.Windows.Forms.ToolStripSeparator();
+            this.locationsButton = new System.Windows.Forms.ToolStripButton();
             this.movieResultsGrid = new System.Windows.Forms.DataGridView();
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.yearDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,8 +66,7 @@
             this.contextMenuSeperator = new System.Windows.Forms.ToolStripSeparator();
             this.browseToUrlMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.movieResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.seperatorButton = new System.Windows.Forms.ToolStripSeparator();
-            this.locationsButton = new System.Windows.Forms.ToolStripButton();
+            this.actorDirectorsButton = new System.Windows.Forms.ToolStripButton();
             this.filterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.directorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).BeginInit();
@@ -93,7 +94,7 @@
             this.filterPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.filterPanel.Location = new System.Drawing.Point(0, 0);
             this.filterPanel.Name = "filterPanel";
-            this.filterPanel.Size = new System.Drawing.Size(454, 148);
+            this.filterPanel.Size = new System.Drawing.Size(512, 148);
             this.filterPanel.TabIndex = 0;
             // 
             // resultsLabel
@@ -177,7 +178,7 @@
             // yearFilterText
             // 
             this.yearFilterText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.yearFilterText.Location = new System.Drawing.Point(334, 30);
+            this.yearFilterText.Location = new System.Drawing.Point(392, 30);
             this.yearFilterText.Name = "yearFilterText";
             this.yearFilterText.Size = new System.Drawing.Size(54, 20);
             this.yearFilterText.TabIndex = 3;
@@ -188,7 +189,7 @@
             // 
             this.yearFilterLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.yearFilterLabel.AutoSize = true;
-            this.yearFilterLabel.Location = new System.Drawing.Point(296, 34);
+            this.yearFilterLabel.Location = new System.Drawing.Point(354, 34);
             this.yearFilterLabel.Name = "yearFilterLabel";
             this.yearFilterLabel.Size = new System.Drawing.Size(32, 13);
             this.yearFilterLabel.TabIndex = 2;
@@ -200,7 +201,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.titleFilterText.Location = new System.Drawing.Point(40, 30);
             this.titleFilterText.Name = "titleFilterText";
-            this.titleFilterText.Size = new System.Drawing.Size(247, 20);
+            this.titleFilterText.Size = new System.Drawing.Size(305, 20);
             this.titleFilterText.TabIndex = 1;
             this.titleFilterText.TextChanged += new System.EventHandler(this.titleFilterText_TextChanged);
             // 
@@ -221,10 +222,11 @@
             this.deleteMovieButton,
             this.browseToUrlButton,
             this.seperatorButton,
+            this.actorDirectorsButton,
             this.locationsButton});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(454, 25);
+            this.toolStrip.Size = new System.Drawing.Size(512, 25);
             this.toolStrip.TabIndex = 11;
             this.toolStrip.Text = "toolStrip1";
             // 
@@ -268,6 +270,21 @@
             this.browseToUrlButton.Text = "Browse to URL";
             this.browseToUrlButton.Click += new System.EventHandler(this.browseToUrlButton_Click);
             // 
+            // seperatorButton
+            // 
+            this.seperatorButton.Name = "seperatorButton";
+            this.seperatorButton.Size = new System.Drawing.Size(6, 25);
+            // 
+            // locationsButton
+            // 
+            this.locationsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.locationsButton.Image = ((System.Drawing.Image)(resources.GetObject("locationsButton.Image")));
+            this.locationsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.locationsButton.Name = "locationsButton";
+            this.locationsButton.Size = new System.Drawing.Size(62, 22);
+            this.locationsButton.Text = "Locations";
+            this.locationsButton.Click += new System.EventHandler(this.locationsButton_Click);
+            // 
             // movieResultsGrid
             // 
             this.movieResultsGrid.AllowUserToAddRows = false;
@@ -292,7 +309,7 @@
             this.movieResultsGrid.ReadOnly = true;
             this.movieResultsGrid.RowHeadersVisible = false;
             this.movieResultsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.movieResultsGrid.Size = new System.Drawing.Size(454, 237);
+            this.movieResultsGrid.Size = new System.Drawing.Size(512, 237);
             this.movieResultsGrid.TabIndex = 1;
             this.movieResultsGrid.DoubleClick += new System.EventHandler(this.movieResultsGrid_DoubleClick);
             this.movieResultsGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.movieResultsGrid_KeyDown);
@@ -394,26 +411,21 @@
             this.movieResultBindingSource.DataSource = typeof(MovieCollection.Models.MovieResult);
             this.movieResultBindingSource.CurrentChanged += new System.EventHandler(this.movieResultBindingSource_CurrentChanged);
             // 
-            // seperatorButton
+            // actorDirectorsButton
             // 
-            this.seperatorButton.Name = "seperatorButton";
-            this.seperatorButton.Size = new System.Drawing.Size(6, 25);
-            // 
-            // locationsButton
-            // 
-            this.locationsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.locationsButton.Image = ((System.Drawing.Image)(resources.GetObject("locationsButton.Image")));
-            this.locationsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.locationsButton.Name = "locationsButton";
-            this.locationsButton.Size = new System.Drawing.Size(62, 22);
-            this.locationsButton.Text = "Locations";
-            this.locationsButton.Click += new System.EventHandler(this.locationsButton_Click);
+            this.actorDirectorsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.actorDirectorsButton.Image = ((System.Drawing.Image)(resources.GetObject("actorDirectorsButton.Image")));
+            this.actorDirectorsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.actorDirectorsButton.Name = "actorDirectorsButton";
+            this.actorDirectorsButton.Size = new System.Drawing.Size(103, 22);
+            this.actorDirectorsButton.Text = "Actors / Directors";
+            this.actorDirectorsButton.Click += new System.EventHandler(this.actorDirectorsButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 385);
+            this.ClientSize = new System.Drawing.Size(512, 385);
             this.Controls.Add(this.movieResultsGrid);
             this.Controls.Add(this.filterPanel);
             this.Name = "MainForm";
@@ -471,6 +483,7 @@
         private System.Windows.Forms.ToolStripMenuItem deleteMovieMenu;
         private System.Windows.Forms.ToolStripSeparator seperatorButton;
         private System.Windows.Forms.ToolStripButton locationsButton;
+        private System.Windows.Forms.ToolStripButton actorDirectorsButton;
     }
 }
 

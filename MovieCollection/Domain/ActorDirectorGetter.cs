@@ -9,15 +9,21 @@ namespace MovieCollection.Domain
     {
         public IEnumerable<ActorDirector> GetListForFilter(bool isForDirectors = false)
         {
-            return GetList("<Please Select>", isForDirectors);
+            return GetListOfTypeForCombo("<Please Select>", isForDirectors);
         }
 
         public IEnumerable<ActorDirector> GetListForAddUpdateMovie(bool isForDirectors = false)
         {
-            return GetList("<None>", isForDirectors);
+            return GetListOfTypeForCombo("<None>", isForDirectors);
         }
 
-        private IEnumerable<ActorDirector> GetList(string firstItemText, bool isForDirectors=false)
+        public IEnumerable<ActorDirector> GetList()
+        {
+            using (var context = new MovieCollectionEntities())
+                return context.ActorDirectors.ToList();
+        }
+
+        private IEnumerable<ActorDirector> GetListOfTypeForCombo(string firstItemText, bool isForDirectors=false)
         {
             var dummyActor = new ActorDirector { Id = Guid.Empty, Name = firstItemText };
             var results = new List<ActorDirector> { dummyActor };

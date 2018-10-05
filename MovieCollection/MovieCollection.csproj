@@ -76,6 +76,12 @@
     <Compile Include="Domain\MovieGetter.cs" />
     <Compile Include="Domain\MovieResultGetter.cs" />
     <Compile Include="Domain\MovieUpdater.cs" />
+    <Compile Include="ActorsDirectorsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActorsDirectorsForm.Designer.cs">
+      <DependentUpon>ActorsDirectorsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LocationsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddUpdateMovieForm.resx">
       <DependentUpon>AddUpdateMovieForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActorsDirectorsForm.resx">
+      <DependentUpon>ActorsDirectorsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LocationsForm.resx">
       <DependentUpon>LocationsForm.cs</DependentUpon>
