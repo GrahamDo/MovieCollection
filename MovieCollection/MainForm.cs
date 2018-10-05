@@ -29,7 +29,8 @@ namespace MovieCollection
             _movieGetter = new MovieGetter();
             _movieAdder = new MovieAdder();
 
-            RefreshActorsDirectors();
+            RefreshActors();
+            RefreshDirectors();
             RefreshLocations();
             _isInitialising = false;
             DoFilter(); //This will set the cursor back to default
@@ -257,7 +258,8 @@ namespace MovieCollection
 
         private void actorsDirectors_DataChanged(object sender, EventArgs e)
         {
-            RefreshActorsDirectors();
+            RefreshActors();
+            RefreshDirectors();
         }
 
         private void locationsForm_DataChanged(object sender, EventArgs e)
@@ -265,11 +267,51 @@ namespace MovieCollection
             RefreshLocations();
         }
 
-        private void RefreshActorsDirectors()
+        private void RefreshActors()
         {
+            var previousActor = (ActorDirector)actorBindingSource.Current;
             actorBindingSource.DataSource = _actorDirectorGetter.GetListForFilter();
+
+            if (previousActor == null)
+                return;
+
+            var itemFound = false;
+            for (var i = 0; i < actorFilterSelect.Items.Count; i++)
+            {
+                var actor = (ActorDirector)actorFilterSelect.Items[i];
+                if (actor.Id == previousActor.Id)
+                {
+                    actorFilterSelect.SelectedIndex = i;
+                    itemFound = true;
+                    break;
+                }
+            }
+            if (!itemFound)
+                actorFilterSelect.SelectedIndex = 0;
+        }
+
+        private void RefreshDirectors()
+        {
+            var previousDirector = (ActorDirector)directorBindingSource.Current;
             directorBindingSource.DataSource = _actorDirectorGetter.GetListForFilter(
                 isForDirectors: true);
+
+            if (previousDirector == null)
+                return;
+
+            var itemFound = false;
+            for (var i = 0; i < directorFilterSelect.Items.Count; i++)
+            {
+                var director = (ActorDirector)directorFilterSelect.Items[i];
+                if (director.Id == previousDirector.Id)
+                {
+                    directorFilterSelect.SelectedIndex = i;
+                    itemFound = true;
+                    break;
+                }
+            }
+            if (!itemFound)
+                directorFilterSelect.SelectedIndex = 0;
         }
 
         private void RefreshLocations()
