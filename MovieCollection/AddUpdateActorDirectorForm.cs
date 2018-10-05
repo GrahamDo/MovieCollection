@@ -9,7 +9,7 @@ namespace MovieCollection
         private ActorDirector _actorDirector;
         private ActorDirectorGetter _actorDirectorGetter;
         private ActorDirectorAdder _actorDirectorAdder;
-        private LocationUpdater _actorDirectorUpdater;
+        private ActorDirectorUpdater _actorDirectorUpdater;
 
         public AddUpdateActorDirectorForm(ActorDirector actorDirector, ActorDirectorGetter actorDirectorGetter, ActorDirectorAdder actorDirectorAdder)
         {
@@ -17,7 +17,7 @@ namespace MovieCollection
             _actorDirector = actorDirector;
             _actorDirectorGetter = actorDirectorGetter;
             _actorDirectorAdder = actorDirectorAdder;
-            _actorDirectorUpdater = new LocationUpdater();
+            _actorDirectorUpdater = new ActorDirectorUpdater();
             actorDirectorBindingSource.DataSource = _actorDirector;
 
             if (_actorDirector.IsNew)
@@ -34,8 +34,8 @@ namespace MovieCollection
                 _actorDirector.Validate(_actorDirectorGetter);
                 if (_actorDirector.IsNew)
                     _actorDirectorAdder.Add(_actorDirector);
-                //TODO else
-                //    _actorDirectorUpdater.Update(actorDirector);
+                else
+                    _actorDirectorUpdater.Update(_actorDirector);
                 DialogResult = DialogResult.OK;
             }
             catch (ActorDirector.ActorDirectorValidationException lve)
