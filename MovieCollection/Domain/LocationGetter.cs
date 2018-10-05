@@ -24,11 +24,11 @@ namespace MovieCollection.Domain
             return results;
         }
 
-        public bool IsExistingByDescription(string description)
+        public bool IsExistingByDescription(string description, Guid excludedId)
         {
             using (var context = new MovieCollectionEntities())
                 return context.Locations
-                    .Where(l => l.Description.ToUpper() == description.ToUpper())
+                    .Where(l => l.Description.ToUpper() == description.ToUpper() && l.Id != excludedId)
                     .Count() > 0;
         }
     }

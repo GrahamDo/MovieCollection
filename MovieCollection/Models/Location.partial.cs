@@ -23,7 +23,7 @@ namespace MovieCollection.Models
         {
             if (string.IsNullOrWhiteSpace(Description))
                 throw new LocationValidationException("Description cannot be blank.");
-            if (_locationGetter.IsExistingByDescription(Description))
+            if (_locationGetter.IsExistingByDescription(Description, Id))
                 throw new LocationValidationException(
                     $"A location named {Description} already exists.");
         }
