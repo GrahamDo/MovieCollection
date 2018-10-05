@@ -19,11 +19,11 @@ namespace MovieCollection.Models
             return Description;
         }
 
-        public void Validate(LocationGetter _locationGetter)
+        public void Validate(LocationGetter locationGetter)
         {
             if (string.IsNullOrWhiteSpace(Description))
                 throw new LocationValidationException("Description cannot be blank.");
-            if (_locationGetter.IsExistingByDescription(Description, Id))
+            if (locationGetter.IsExistingByDescription(Description, Id))
                 throw new LocationValidationException(
                     $"A location named {Description} already exists.");
         }
