@@ -67,6 +67,7 @@
       <DependentUpon>AddUpdateMovieForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Domain\LocationAdder.cs" />
+    <Compile Include="Domain\LocationDeleter.cs" />
     <Compile Include="Domain\LocationGetter.cs" />
     <Compile Include="Domain\ActorDirectorGetter.cs" />
     <Compile Include="Domain\LocationUpdater.cs" />

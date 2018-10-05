@@ -246,7 +246,7 @@ namespace MovieCollection
 
         private void locationsButton_Click(object sender, EventArgs e)
         {
-            var frm = new LocationsForm(_locationGetter);
+            var frm = new LocationsForm(_locationGetter, _movieGetter);
             frm.Show();
         }
     }

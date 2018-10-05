@@ -11,5 +11,11 @@ namespace MovieCollection.Domain
             using (var context = new MovieCollectionEntities())
                 return context.Movies.Where(m => m.Id == id).FirstOrDefault();
         }
+
+        public bool IsMovieExistingByLocationId(Guid locationId)
+        {
+            using (var context = new MovieCollectionEntities())
+                return context.Movies.Any(m => m.LocationId == locationId);
+        }
     }
 }
