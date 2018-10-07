@@ -30,6 +30,6 @@ namespace MovieCollection.Domain
         }
 
         public bool IsMaxResultsCountExceeded(List<MovieResult> list, uint maxResults)
-            => list.Count > maxResults || maxResults == 0;
+            => list.Count > maxResults && maxResults != 0;
     }
 }
